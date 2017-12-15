@@ -26,4 +26,29 @@ Spring cloud的大部分组件如下图所示.图中eureka作为服务注册与�
 ![Spring cloud组件](../images/springcloud.png)
 
 ### eureka
-eureka作为
+eureka作为spring cloud的注册与发现，与zookeeper对比，主要有以下几点优势：  
+1.eureka天生就是做服务发现与注册，而zookeeper需要依赖dubbo或者自己做工具才可以。  
+2.eureka具有客户端缓存，及时服务宕机，客户端依然可以根据客户端缓存互相通信。  
+3.在Eureka平台中，如果某台服务器宕机，Eureka不会有类似于ZooKeeper的选举leader的过程；客户端请求会自动切换到新的Eureka节点；当宕机的服务器重新恢复后，Eureka会再次将其纳入到服务器集群管理之中；而对于它来说，所有要做的无非是同步一些新的服务注册信息而已。  
+
+### config 
+spring cloud中可以使用config server作为配置中心。与目前[disconf](https://github.com/knightliao/disconf)主要有以下几点区别：  
+1.disconf提供了友好的图形界面，而spring cloud没有。  
+2.disconf搭建部署非常麻烦。  
+3.disconf需要依赖zookeeper，而spring cloud需要依赖git及svn。 
+4.disconf本身可以达到无重启自动刷新，而spring cloud需要依赖spring cloud bus+消息队列在刷新。
+
+### ribbon
+ribbon的主要是对原先spring的restTemplate的封装，在此基础上做了功能的增强。最大的特点就是引入了客户端负载均衡的形式，避免了引入其他的服务器负载均衡。
+
+### feign
+Feign是一种声明式、模板化的HTTP客户端。一般对于内部服务，我们都是用feign来作为服务调用。feign对于开发人员最重要的就是开发简单，开发人员可以在无感知的情况下，进行http请求。
+
+## 案例
+这里有我一个spring cloud的项目[案例](https://github.com/maojiawei/zhabei-spring-cloud)里面有对spring cloud各个组件更为详细的介绍，欢迎大家查看并给予意见。
+
+
+
+
+
+
