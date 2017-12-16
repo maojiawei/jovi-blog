@@ -6,8 +6,8 @@ tags: ["spring","微服务"]
 ---
 ## 简介
 Spring cloud是目前最流行的微服务框架。它是在spring boot的基础上构建的，用于快速构建分布式系统的通用模式的工具集。Spring Cloud 包含了许多子项目，提供了一些工具来快速构建分布式系统中一些常用模式，分布式配置管理、服务注册和发现、断路器、智能路由、全局锁等。  
-## 与dubbo对比
-很多人会说Spring Cloud和Dubbo的对比有点不公平，Dubbo只是实现了服务治理，而Spring Cloud下面有17个子项目（可能还会新增）分别覆盖了微服务架构下的方方面面，服务治理只是其中的一个方面。当然dubbo也有好消息，就是阿里巴巴开始重新维护dubbo了，但以目前来说，spring cloud更全面。以下是对spring cloud与dubbo的全面对比。
+## 同类对比
+很多人都会讲spring cloud与dubbo对比，但其实Dubbo只是实现了服务治理，而Spring Cloud的各类组件覆盖了微服务架构的方方面面，服务治理只是其中的一个方面。当然dubbo也有好消息，就是阿里巴巴开始重新维护dubbo了，但以目前来说，spring cloud更全面。以下是对spring cloud与dubbo的全面对比。
 
 | 	功能    |dubbo	|spring Cloud|
 |-------|---------|----|
@@ -23,7 +23,7 @@ Spring cloud是目前最流行的微服务框架。它是在spring boot的基础
 |……	|……	|……|
 
 ## 组件
-Spring cloud的大部分组件如下图所示.图中eureka作为服务注册与发现,共有三个微服务User、Service1和Service2是注册到eureka中的,feign作为内部客户端调用service.zuul作为API网关与eureka相关联，对外部提供服务.Ribbon作为外部客户端调用zuul，再由zuul转发至对应的服务中。monitor和hystrix dashboard作为微服务监控，turbine作为交易链路监控。
+Spring cloud的最常用的组件如下图所示.图中eureka作为服务注册与发现,共有三个微服务User、Service1和Service2是注册到eureka中的,feign作为内部客户端调用service.zuul作为API网关与eureka相关联，对外部提供服务.Ribbon作为外部客户端调用zuul，再由zuul转发至对应的服务中。monitor和hystrix dashboard作为微服务监控，turbine作为交易链路监控。
 ![Spring cloud组件](../images/springcloud.png)
 
 ### eureka
@@ -44,6 +44,18 @@ ribbon的主要是对原先spring的restTemplate的封装，在此基础上做�
 
 ### feign
 Feign是一种声明式、模板化的HTTP客户端。一般对于内部服务，我们都是用feign来作为服务调用。feign对于开发人员最重要的就是开发简单，开发人员可以在无感知的情况下，进行http请求。
+
+### hystrix
+Hystrix是spring cloud的一种防御机制，防止一个服务出现问题造成其他服务阻塞，避免整个系统都面临着瘫痪的风险。同时，hystrix也提供了dashboard来查看服务的监控信息。
+
+### turbine
+Turbine是一个监控聚合，将hystrix的监控数据以一个整体的方式展示出来。
+
+### sleuth
+Sleuth是spring cloud的分布式跟踪组件，它可以查看各个微服务之间的调用状态。可以配合zipkin来查看所有的信息。
+
+### zuul
+zuul是一个API网关，主要是像外部服务提供入口。它可以集成服务聚合和访问权限。
 
 ## 案例
 这里有我一个spring cloud的项目[案例](https://github.com/maojiawei/zhabei-spring-cloud)里面有对spring cloud各个组件更为详细的介绍，欢迎大家查看并给予意见。
