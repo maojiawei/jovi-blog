@@ -12,7 +12,7 @@ Spring cloud是目前最流行的微服务框架。它是在spring boot的基础
 | 	功能    |dubbo	|spring Cloud|
 |-------|---------|----|
 |服务注册中心 |Zookeeper|	Spring Cloud Netflix Eureka|
-|服务调用方式 |	RPC	REST |API|
+|服务调用方式 |	RPC	 |REST API|
 |服务网关	    |无	|Spring Cloud Netflix Zuul|
 |断路器	    |不完善	|Spring Cloud Netflix Hystrix|
 |分布式配置   |无	|Spring Cloud Config|
