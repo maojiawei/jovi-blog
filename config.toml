@@ -26,10 +26,10 @@ enableRobotsTXT = true
     identifier = "microservice"
     name = "微服务"
     weight = 1
-    url = "/posts/microservice/"
+    url = "/post/microservice/"
 
 [[menu.main]]
     identifier = "container"
     name = "容器"
     weight = 1
-    url = "/posts//container/"
+    url = "/post/container/"
