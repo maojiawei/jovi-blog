@@ -36,7 +36,7 @@ rabbitmq:3.6.6-management 表示镜像名称，本例默认为docker官方镜像
 Direct Exchange是RabbitMQ默认的交换形式，如下图所示，exchange直接根据routing_key（路由键）去将消息发送至对应的队列中。 
 ![rabbitmq-direct模式](../images/rabbitmq/rabbitmq-direct-exchange.png)
 
-直接启动项目并在命令行输入'curl localhost:8080/hello',控制台输入以下内容
+直接启动项目并在命令行输入`curl localhost:8080/hello`,控制台输入以下内容
 ```
 Sender : hello Sun Dec 17 16:16:47 CST 2017
 Receiver  : hello Sun Dec 17 16:16:47 CST 2017
@@ -100,12 +100,12 @@ Topic Exchange是RabbitMQ中最灵活的交换形式，它转发消息主要依�
 3.路由模式中的井号(#)，表示相当于一个或者多个单词，例如一个匹配模式是topic.message.#，所有已topic.message开头的路由键都可以匹配上，例如：topic.message.A、topic.messageA或topic.message.B
 ![rabbitmq-direct模式](../images/rabbitmq/rabbitmq-topic-exchange.png)
 
-直接启动项目并在命令行输入'curl localhost:8080/topic1',控制台输入以下内容。（topic1的路由是topic.1，因此只有topic.#才能匹配上。）
+直接启动项目并在命令行输入`curl localhost:8080/topic1`,控制台输入以下内容。（topic1的路由是topic.1，因此只有topic.#才能匹配上。）
 ```
 Sender : hi, i am message 1
 Topic ReceiverB : hi, i am message 1
 ```
-直接启动项目并在命令行输入'curl localhost:8080/topic2',控制台输入以下内容。（topic2的路由是topic.messageA，因此topic.messageA与topic.#都能匹配上。）
+直接启动项目并在命令行输入`curl localhost:8080/topic2`,控制台输入以下内容。（topic2的路由是topic.messageA，因此topic.messageA与topic.#都能匹配上。）
 ```
 Sender : hi, i am messages 2
 Topic ReceiverB : hi, i am messages 2
@@ -206,7 +206,7 @@ Fanout Exchange会将消息转发到所有的消息队列中，只要将队列�
 下图中，消息生产者将消息发送给交换机（fanoutExchange）上，fanoutA、fanoutB、fanoutC将自己的队列绑定至fanoutExchange上，一旦消息发出，三个队列都会收到消息:
 ![rabbitmq-direct模式](../images/rabbitmq/rabbitmq-fanout-exchange.png)
 
-直接启动项目并在命令行输入'curl localhost:8080/fanout',控制台输入以下内容
+直接启动项目并在命令行输入`curl localhost:8080/fanout`,控制台输入以下内容
 ```
 Sender : hi, fanout msg 
 fanout Receiver A  : hi, fanout msg 
