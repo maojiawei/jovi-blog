@@ -1,8 +1,8 @@
 ---
-title: "Rabbitmq消息队列介绍"
+title: "springboot与rabbitmq整合"
 date: 2017-12-17T18:20:30+08:00
 draft: false
-tags: ["spring","微服务","消息中间件"]
+tags: ["springboot","微服务","消息中间件"]
 ---
 ## 简单介绍
 微服务中消息队列也是最终的一块，主要解决在微服务中应用，异步消息等问题。目前使用较多的消息队列有：kafka、rabbitmq、zeromq以及activeMQ等。本章重点介绍的是rabbitmq。
@@ -96,7 +96,7 @@ public class HelloController {
 ### Topic Exchange
 Topic Exchange是RabbitMQ中最灵活的交换形式，它转发消息主要依靠通配符。 比如：  
 1.路由键必须是一串字符，用句号（.） 隔开，比如说 topic.messageA  
-2.路由模式中的星号(*)，表示匹配路由键指定位置的一个单词，比如说：topic.message.*，匹配路由键逻辑是：第一个单词是 topic，第二个单词是 message，第三个可以任意字符串。
+2.路由模式中的星号(*)，表示匹配路由键指定位置的一个单词，比如说：topic.message.*，匹配路由键逻辑是：第一个单词是 topic，第二个单词是 message，第三个可以任意字符串。  
 3.路由模式中的井号(#)，表示相当于一个或者多个单词，例如一个匹配模式是topic.message.#，所有已topic.message开头的路由键都可以匹配上，例如：topic.message.A、topic.messageA或topic.message.B
 ![rabbitmq-direct模式](../images/rabbitmq/rabbitmq-topic-exchange.png)
 
@@ -105,7 +105,7 @@ Topic Exchange是RabbitMQ中最灵活的交换形式，它转发消息主要依�
 Sender : hi, i am message 1
 Topic ReceiverB : hi, i am message 1
 ```
-直接启动项目并在命令行输入'curl localhost:8080/topic2',控制台输入以下内容。（topic2的路由是topic.messageA，因此只有topic.messageA与topic.#都能匹配上。）
+直接启动项目并在命令行输入'curl localhost:8080/topic2',控制台输入以下内容。（topic2的路由是topic.messageA，因此topic.messageA与topic.#都能匹配上。）
 ```
 Sender : hi, i am messages 2
 Topic ReceiverB : hi, i am messages 2
@@ -172,7 +172,7 @@ public class TopicReceiverA {
     @RabbitHandler
     public void process(String message) {
         System.out.println("Topic ReceiverA : " + message);
-    }
+    }dns-pod.jpeg
 }
 
 ```

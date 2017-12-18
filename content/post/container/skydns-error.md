@@ -20,12 +20,16 @@ ping: unknown host
 ```
 kubectl get po -n kube-system
 ```
+显示如下:  
+![kube-system的dns pod状态](../images/dns/kube-proxy.jpeg)
 
 ## kube-proxy
 kubernetes的DNS出了问题首先要检查各个节点kube-proxy服务是否正常。
 ```
 systemctl status kube-proxy.service
 ```
+显示如下:  
+![kube-proxy的服务状态](../images/dns/dns-pod.jpeg)
 
 ## 其他
 如果还有问题，请检查iptables，具体如下。
