@@ -36,7 +36,7 @@ eureka作为spring cloud的注册与发现，与zookeeper对比，主要有以�
 spring cloud中可以使用config server作为配置中心。与目前[disconf](https://github.com/knightliao/disconf)主要有以下几点区别：  
 1.disconf提供了友好的图形界面，而spring cloud没有。  
 2.disconf搭建部署非常麻烦。  
-3.disconf需要依赖zookeeper，而spring cloud需要依赖git及svn。 
+3.disconf需要依赖zookeeper，而spring cloud需要依赖git及svn。  
 4.disconf本身可以达到无重启自动刷新，而spring cloud需要依赖spring cloud bus+消息队列在刷新。
 
 ### ribbon

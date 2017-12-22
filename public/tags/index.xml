@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on jovi&#39;s blog</title>
+    <link>http://jovi.io/tags/</link>
+    <description>Recent content in Tags on jovi&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 12 Dec 2017 10:09:09 +0800</lastBuildDate>
+    
+	<atom:link href="http://jovi.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Kubernetes</title>
+      <link>http://jovi.io/tags/kubernetes/</link>
+      <pubDate>Tue, 12 Dec 2017 10:09:09 +0800</pubDate>
+      
+      <guid>http://jovi.io/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Spring</title>
+      <link>http://jovi.io/tags/spring/</link>
+      <pubDate>Mon, 11 Dec 2017 22:46:33 +0800</pubDate>
+      
+      <guid>http://jovi.io/tags/spring/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Springboot</title>
+      <link>http://jovi.io/tags/springboot/</link>
+      <pubDate>Sun, 17 Dec 2017 18:20:30 +0800</pubDate>
+      
+      <guid>http://jovi.io/tags/springboot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>微服务</title>
+      <link>http://jovi.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
+      <pubDate>Sun, 17 Dec 2017 18:20:30 +0800</pubDate>
+      
+      <guid>http://jovi.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>消息中间件</title>
+      <link>http://jovi.io/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/</link>
+      <pubDate>Sun, 17 Dec 2017 18:20:30 +0800</pubDate>
+      
+      <guid>http://jovi.io/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

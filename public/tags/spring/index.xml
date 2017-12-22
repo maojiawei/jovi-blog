@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spring on jovi&#39;s blog</title>
+    <link>http://jovi.io/tags/spring/</link>
+    <description>Recent content in Spring on jovi&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 11 Dec 2017 22:46:33 +0800</lastBuildDate>
+    
+	<atom:link href="http://jovi.io/tags/spring/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Spring Cloud 介绍</title>
+      <link>http://jovi.io/post/microservice/spring-cloud-introduce/</link>
+      <pubDate>Mon, 11 Dec 2017 22:46:33 +0800</pubDate>
+      
+      <guid>http://jovi.io/post/microservice/spring-cloud-introduce/</guid>
+      <description>简介 Spring cloud是目前最流行的微服务框架。它是在spring boot的基础上构建的，用于快速构建分布式系统的通用模式的工具集。Spring Cloud 包含了许多子项目，提供了一些工具来快速构建分布式系统中一些常用模式，分布式配置管理、服务注册和发现、断路器、智能路由、全局锁等。
+同类对比 很多人都会讲spring cloud与dubbo对比，但其实Dubbo只是实现了服务治理，而Spring Cloud的各类组件覆盖了微服务架构的方方面面，服务治理只是其中的一个方面。当然dubbo也有好消息，就是阿里巴巴开始重新维护dubbo了，但以目前来说，spring cloud更全面。以下是对spring cloud与dubbo的全面对比。
+   功能 dubbo spring Cloud     服务注册中心 Zookeeper Spring Cloud Netflix Eureka   服务调用方式 RPC REST API   服务网关 无 Spring Cloud Netflix Zuul   断路器 不完善 Spring Cloud Netflix Hystrix   分布式配置 无 Spring Cloud Config   服务跟踪 无 Spring Cloud Sleuth   消息总线 无 Spring Cloud Bus   数据流 无 Spring Cloud Stream   批量任务 无 Spring Cloud Task   …… …… ……    组件 Spring cloud的最常用的组件如下图所示.</description>
+    </item>
+    
+  </channel>
+</rss>

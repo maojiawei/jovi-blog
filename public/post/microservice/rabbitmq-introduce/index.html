@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>jovi&#39;s blog  | springboot与rabbitmq整合</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.30.2" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    <link href='http://jovi.io/dist/main.css' rel='stylesheet' type="text/css" />
+    
+      
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+
+    
+
+    
+
+    <meta property="og:title" content="springboot与rabbitmq整合" />
+<meta property="og:description" content="简单介绍 微服务中消息队列也是最终的一块，主要解决在微服务中应用，异步消息等问题。目前使用较多的消息队列有：kafka、rabbitmq、zeromq以及activeMQ等。本章重点介绍的是rabbitmq。
+前提准备 本例的rabbitmq的版本为rabbitmq:3.6.6-management，采用docker安装的方式。
+在安装docker的电脑上输入以下命令,浏览器中输入localhost:15672或者linux中运行curl localhost:15672即可
+docker run -d --name=rabbitmq -p 5672:5672 -p 15672:15672 -e RABBITMQ_DEFAULT_USER=admin -e RABBITMQ_DEFAULT_PASS=admin rabbitmq:3.6.6-management  docker run 表示docker启动容器。 --name表示容器名称。 -p 表示端口，rabbitmq的5672为AMQP协议端口，15672为管理界面端口。 -e 为对应参数，本例中默认的用户名密码为admin/admin rabbitmq:3.6.6-management 表示镜像名称，本例默认为docker官方镜像  使用 消息队列一般有三个核心组件：消息发送者，队列，消息接收者。RabbitMQ在此基础上添加了交换器 (Exchange)的概念。所以，在Rabbitmq中，消息发送者将消息发送至交换机中，再由交换机根据调度策略发送给队列，最后，由消息接收者接收消息。
+具体如下图所示:
+一般Rabbitmq有三种常用模式:
+1.Direct Exchange
+2.Topic Exchange
+3.Fanout Exchange
+Direct Exchange Direct Exchange是RabbitMQ默认的交换形式，如下图所示，exchange直接根据routing_key（路由键）去将消息发送至对应的队列中。 直接启动项目并在命令行输入curl localhost:8080/hello,控制台输入以下内容
+Sender : hello Sun Dec 17 16:16:47 CST 2017 Receiver : hello Sun Dec 17 16:16:47 CST 2017  具体实现如下:
+配置队列,在项目中配置了一个hello的队列。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://jovi.io/post/microservice/rabbitmq-introduce/" />
+
+
+
+<meta property="article:published_time" content="2017-12-17T18:20:30&#43;08:00"/>
+
+<meta property="article:modified_time" content="2017-12-17T18:20:30&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="springboot与rabbitmq整合">
+<meta itemprop="description" content="简单介绍 微服务中消息队列也是最终的一块，主要解决在微服务中应用，异步消息等问题。目前使用较多的消息队列有：kafka、rabbitmq、zeromq以及activeMQ等。本章重点介绍的是rabbitmq。
+前提准备 本例的rabbitmq的版本为rabbitmq:3.6.6-management，采用docker安装的方式。
+在安装docker的电脑上输入以下命令,浏览器中输入localhost:15672或者linux中运行curl localhost:15672即可
+docker run -d --name=rabbitmq -p 5672:5672 -p 15672:15672 -e RABBITMQ_DEFAULT_USER=admin -e RABBITMQ_DEFAULT_PASS=admin rabbitmq:3.6.6-management  docker run 表示docker启动容器。 --name表示容器名称。 -p 表示端口，rabbitmq的5672为AMQP协议端口，15672为管理界面端口。 -e 为对应参数，本例中默认的用户名密码为admin/admin rabbitmq:3.6.6-management 表示镜像名称，本例默认为docker官方镜像  使用 消息队列一般有三个核心组件：消息发送者，队列，消息接收者。RabbitMQ在此基础上添加了交换器 (Exchange)的概念。所以，在Rabbitmq中，消息发送者将消息发送至交换机中，再由交换机根据调度策略发送给队列，最后，由消息接收者接收消息。
+具体如下图所示:
+一般Rabbitmq有三种常用模式:
+1.Direct Exchange
+2.Topic Exchange
+3.Fanout Exchange
+Direct Exchange Direct Exchange是RabbitMQ默认的交换形式，如下图所示，exchange直接根据routing_key（路由键）去将消息发送至对应的队列中。 直接启动项目并在命令行输入curl localhost:8080/hello,控制台输入以下内容
+Sender : hello Sun Dec 17 16:16:47 CST 2017 Receiver : hello Sun Dec 17 16:16:47 CST 2017  具体实现如下:
+配置队列,在项目中配置了一个hello的队列。">
+
+
+<meta itemprop="datePublished" content="2017-12-17T18:20:30&#43;08:00" />
+<meta itemprop="dateModified" content="2017-12-17T18:20:30&#43;08:00" />
+<meta itemprop="wordCount" content="594">
+
+
+
+<meta itemprop="keywords" content="springboot,微服务,消息中间件," />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="springboot与rabbitmq整合"/>
+<meta name="twitter:description" content="简单介绍 微服务中消息队列也是最终的一块，主要解决在微服务中应用，异步消息等问题。目前使用较多的消息队列有：kafka、rabbitmq、zeromq以及activeMQ等。本章重点介绍的是rabbitmq。
+前提准备 本例的rabbitmq的版本为rabbitmq:3.6.6-management，采用docker安装的方式。
+在安装docker的电脑上输入以下命令,浏览器中输入localhost:15672或者linux中运行curl localhost:15672即可
+docker run -d --name=rabbitmq -p 5672:5672 -p 15672:15672 -e RABBITMQ_DEFAULT_USER=admin -e RABBITMQ_DEFAULT_PASS=admin rabbitmq:3.6.6-management  docker run 表示docker启动容器。 --name表示容器名称。 -p 表示端口，rabbitmq的5672为AMQP协议端口，15672为管理界面端口。 -e 为对应参数，本例中默认的用户名密码为admin/admin rabbitmq:3.6.6-management 表示镜像名称，本例默认为docker官方镜像  使用 消息队列一般有三个核心组件：消息发送者，队列，消息接收者。RabbitMQ在此基础上添加了交换器 (Exchange)的概念。所以，在Rabbitmq中，消息发送者将消息发送至交换机中，再由交换机根据调度策略发送给队列，最后，由消息接收者接收消息。
+具体如下图所示:
+一般Rabbitmq有三种常用模式:
+1.Direct Exchange
+2.Topic Exchange
+3.Fanout Exchange
+Direct Exchange Direct Exchange是RabbitMQ默认的交换形式，如下图所示，exchange直接根据routing_key（路由键）去将消息发送至对应的队列中。 直接启动项目并在命令行输入curl localhost:8080/hello,控制台输入以下内容
+Sender : hello Sun Dec 17 16:16:47 CST 2017 Receiver : hello Sun Dec 17 16:16:47 CST 2017  具体实现如下:
+配置队列,在项目中配置了一个hello的队列。"/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="http://jovi.io/" class="f3 fw2 hover-white no-underline white-90 dib">
+      jovi&#39;s blog
+    </a>
+    <div class="flex-l items-center">
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/container/" title="容器 page">
+              容器
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/microservice/" title="微服务 page">
+              微服务
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+
+
+  <a href="https://github.com/maojiawei" class="link-transition github link dib z-999 pt3 pt0-l mr2" title="Github link">
+    <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+  </a>
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  <div class="flex-l mt2 mw8 center">
+    <article class="center cf pv5 ph3 ph4-ns mw7">
+      <p class="f6 b helvetica tracked">
+        
+        POST
+      </p>
+      <h1 class="f1 athelas">
+        springboot与rabbitmq整合
+      </h1>
+        
+        
+      <time class="f6 mv4 dib tracked" datetime="2017-12-17T18:20:30&#43;08:00">
+        December 17, 2017
+      </time>
+      <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray">
+        
+
+<h2 id="简单介绍">简单介绍</h2>
+
+<p>微服务中消息队列也是最终的一块，主要解决在微服务中应用，异步消息等问题。目前使用较多的消息队列有：kafka、rabbitmq、zeromq以及activeMQ等。本章重点介绍的是rabbitmq。</p>
+
+<h2 id="前提准备">前提准备</h2>
+
+<p>本例的rabbitmq的版本为rabbitmq:3.6.6-management，采用docker安装的方式。<br />
+在安装docker的电脑上输入以下命令,浏览器中输入<code>localhost:15672</code>或者linux中运行<code>curl localhost:15672</code>即可</p>
+
+<pre><code>docker run -d --name=rabbitmq -p 5672:5672 -p 15672:15672 -e RABBITMQ_DEFAULT_USER=admin -e RABBITMQ_DEFAULT_PASS=admin rabbitmq:3.6.6-management
+</code></pre>
+
+<pre><code>docker run 表示docker启动容器。
+--name表示容器名称。
+-p 表示端口，rabbitmq的5672为AMQP协议端口，15672为管理界面端口。
+-e 为对应参数，本例中默认的用户名密码为admin/admin
+rabbitmq:3.6.6-management 表示镜像名称，本例默认为docker官方镜像
+</code></pre>
+
+<h2 id="使用">使用</h2>
+
+<p>消息队列一般有三个核心组件：消息发送者，队列，消息接收者。RabbitMQ在此基础上添加了交换器 (Exchange)的概念。所以，在Rabbitmq中，消息发送者将消息发送至交换机中，再由交换机根据调度策略发送给队列，最后，由消息接收者接收消息。<br />
+具体如下图所示:<br />
+<img src="../images/rabbitmq/rabbitmq-message-send.png" alt="rabbitmq消息发送使用" /></p>
+
+<p>一般Rabbitmq有三种常用模式:<br />
+1.Direct Exchange<br />
+2.Topic Exchange<br />
+3.Fanout Exchange</p>
+
+<h3 id="direct-exchange">Direct Exchange</h3>
+
+<p>Direct Exchange是RabbitMQ默认的交换形式，如下图所示，exchange直接根据routing_key（路由键）去将消息发送至对应的队列中。
+<img src="../images/rabbitmq/rabbitmq-direct-exchange.png" alt="rabbitmq-direct模式" /></p>
+
+<p>直接启动项目并在命令行输入<code>curl localhost:8080/hello</code>,控制台输入以下内容</p>
+
+<pre><code>Sender : hello Sun Dec 17 16:16:47 CST 2017
+Receiver  : hello Sun Dec 17 16:16:47 CST 2017
+</code></pre>
+
+<p>具体实现如下:<br />
+配置队列,在项目中配置了一个hello的队列。</p>
+
+<pre><code>@Configuration
+public class RabbitConfig {
+    @Bean
+    public Queue Queue() {
+        return new Queue(&quot;hello&quot;);
+    }
+}
+</code></pre>
+
+<p>配置消息发送者,exchange会根据convertAndSend的第一个参数为路由键（下文为hello）寻找hello的队列。</p>
+
+<pre><code>@Component
+public class HelloSender {
+    @Autowired
+    private AmqpTemplate rabbitTemplate;
+    public void send() {
+        String context = &quot;hello &quot; + new Date();
+        System.out.println(&quot;Sender : &quot; + context);
+        this.rabbitTemplate.convertAndSend(&quot;hello&quot;, context);
+    }
+}
+</code></pre>
+
+<p>配置消息发送者,@RabbitListener中为监听的队列名称。</p>
+
+<pre><code>@Component
+@RabbitListener(queues = &quot;hello&quot;)
+public class HelloReceiver {
+    @RabbitHandler
+    public void process(String hello) {
+        System.out.println(&quot;Receiver  : &quot; + hello);
+    }
+}
+</code></pre>
+
+<p>配置controller，下面是触发sender的controller。</p>
+
+<pre><code>@RestController
+public class HelloController {
+    @Autowired
+    private HelloSender helloSender;
+    /**
+     * 采用rabbitmq的direct exchange模式
+     * @throws Exception
+     */
+    @GetMapping(&quot;/hello&quot;)
+    public void hello() throws Exception {
+        helloSender.send();
+    }
+}
+</code></pre>
+
+<h3 id="topic-exchange">Topic Exchange</h3>
+
+<p>Topic Exchange是RabbitMQ中最灵活的交换形式，它转发消息主要依靠通配符。 比如：<br />
+1.路由键必须是一串字符，用句号（.） 隔开，比如说 topic.messageA<br />
+2.路由模式中的星号(*)，表示匹配路由键指定位置的一个单词，比如说：topic.message.*，匹配路由键逻辑是：第一个单词是 topic，第二个单词是 message，第三个可以任意字符串。<br />
+3.路由模式中的井号(#)，表示相当于一个或者多个单词，例如一个匹配模式是topic.message.#，所有已topic.message开头的路由键都可以匹配上，例如：topic.message.A、topic.messageA或topic.message.B
+<img src="../images/rabbitmq/rabbitmq-topic-exchange.png" alt="rabbitmq-direct模式" /></p>
+
+<p>直接启动项目并在命令行输入<code>curl localhost:8080/topic1</code>,控制台输入以下内容。（topic1的路由是topic.1，因此只有topic.#才能匹配上。）</p>
+
+<pre><code>Sender : hi, i am message 1
+Topic ReceiverB : hi, i am message 1
+</code></pre>
+
+<p>直接启动项目并在命令行输入<code>curl localhost:8080/topic2</code>,控制台输入以下内容。（topic2的路由是topic.messageA，因此topic.messageA与topic.#都能匹配上。）</p>
+
+<pre><code>Sender : hi, i am messages 2
+Topic ReceiverB : hi, i am messages 2
+Topic ReceiverA : hi, i am messages 2
+</code></pre>
+
+<p>具体实现如下:<br />
+配置队列,在项目中配置了两个队列topic.messageA、topic.messageB。topic.messageA只绑定了topic.messageA，也就是只有路由topic.messageA才可以进入该队列中。topic.messageB绑定了topic.#，即只要topic开头的队列就可以进入该队列中。</p>
+
+<pre><code>@Configuration
+public class TopicRabbitConfig {
+    final static String message = &quot;topic.messageA&quot;;
+    final static String messages = &quot;topic.messageB&quot;;
+    //创建队列A
+    @Bean
+    public Queue messageA() {
+        return new Queue(message);
+    }
+    //创建队列B
+    @Bean
+    public Queue messageB() {
+        return new Queue(messages);
+    }
+    //创建交换器
+    @Bean
+    TopicExchange exchange() {
+        return new TopicExchange(&quot;topicExchange&quot;);
+    }
+    //将队列A绑定至topic.messageA的路由键中
+    @Bean
+    Binding bindingExchangeMessage(Queue messageA, TopicExchange exchange) {
+        return BindingBuilder.bind(messageA).to(exchange).with(&quot;topic.messageA&quot;);
+    }
+    //将队列A绑定至topic.#的路由键中，*表示一个词,#表示零个或多个词
+    @Bean
+    Binding bindingExchangeMessages(Queue messageB, TopicExchange exchange) {
+        return BindingBuilder.bind(messageB).to(exchange).with(&quot;topic.#&quot;);
+    }
+}
+</code></pre>
+
+<p>配置消息发送者,exchange会根据convertAndSend的第一个参数为路由键（下文为hello）寻找hello的队列。</p>
+
+<pre><code>@Component
+public class TopicSender {
+    @Autowired
+    private AmqpTemplate rabbitTemplate;
+    public void send1() {
+        String context = &quot;hi, i am message 1&quot;;
+        System.out.println(&quot;Sender : &quot; + context);
+        this.rabbitTemplate.convertAndSend(&quot;topicExchange&quot;, &quot;topic.message&quot;, context);
+    }
+    public void send2() {
+        String context = &quot;hi, i am messages 2&quot;;
+        System.out.println(&quot;Sender : &quot; + context);
+        this.rabbitTemplate.convertAndSend(&quot;topicExchange&quot;, &quot;topic.messageA&quot;, context);
+    }
+}
+</code></pre>
+
+<p>配置消息发送者,@RabbitListener中为监听的队列名称,此处同direct exchange的配置。</p>
+
+<pre><code>@Component
+@RabbitListener(queues = &quot;topic.messageA&quot;)
+public class TopicReceiverA {
+    @RabbitHandler
+    public void process(String message) {
+        System.out.println(&quot;Topic ReceiverA : &quot; + message);
+    }dns-pod.jpeg
+}
+
+</code></pre>
+
+<p>配置controller，下面是触发sender的controller。</p>
+
+<pre><code>@RestController
+public class HelloController {
+    @Autowired
+    private HelloSender helloSender;
+    /**
+     * 采用rabbitmq的topic exchange模式
+     * @throws Exception
+     */
+     @GetMapping(&quot;/topic1&quot;)
+     public void topic1() throws Exception {
+        sender.send1();
+     }
+     /**
+      * 采用rabbitmq的topic exchange模式
+      * @throws Exception
+      */
+     @GetMapping(&quot;/topic2&quot;)
+     public void topic2() throws Exception {
+        sender.send2();
+     }
+}
+</code></pre>
+
+<h3 id="fanout-exchange">fanout Exchange</h3>
+
+<p>Fanout Exchange会将消息转发到所有的消息队列中，只要将队列绑定到fanout中。
+下图中，消息生产者将消息发送给交换机（fanoutExchange）上，fanoutA、fanoutB、fanoutC将自己的队列绑定至fanoutExchange上，一旦消息发出，三个队列都会收到消息:
+<img src="../images/rabbitmq/rabbitmq-fanout-exchange.png" alt="rabbitmq-direct模式" /></p>
+
+<p>直接启动项目并在命令行输入<code>curl localhost:8080/fanout</code>,控制台输入以下内容</p>
+
+<pre><code>Sender : hi, fanout msg 
+fanout Receiver A  : hi, fanout msg 
+fanout Receiver B  : hi, fanout msg 
+fanout Receiver C  : hi, fanout msg 
+</code></pre>
+
+<p>具体实现如下:<br />
+配置队列,在项目中配置了三个队列（fanoutA、fanoutB、fanoutC），并配置了FanoutExchange。通过bindingExchange将三个队列绑定到fanout中。</p>
+
+<pre><code>@Configuration
+public class FanoutRabbitConfig {
+    public static final String FANOUT_EXCHANGE = &quot;fanoutExchange&quot;;
+    @Bean
+    public Queue AMessage() {
+        return new Queue(&quot;fanoutA&quot;);
+    }
+    @Bean
+    public Queue BMessage() {
+        return new Queue(&quot;fanoutB&quot;);
+    }
+    @Bean
+    public Queue CMessage() {
+        return new Queue(&quot;fanoutC&quot;);
+    }
+    @Bean
+    FanoutExchange fanoutExchange() {
+        return new FanoutExchange(FANOUT_EXCHANGE);
+    }
+    @Bean
+    Binding bindingExchangeA(Queue AMessage,FanoutExchange fanoutExchange) {
+        return BindingBuilder.bind(AMessage).to(fanoutExchange);
+    }
+    @Bean
+    Binding bindingExchangeB(Queue BMessage, FanoutExchange fanoutExchange) {
+        return BindingBuilder.bind(BMessage).to(fanoutExchange);
+    }
+    @Bean
+    Binding bindingExchangeC(Queue CMessage, FanoutExchange fanoutExchange) {
+        return BindingBuilder.bind(CMessage).to(fanoutExchange);
+    }
+}
+</code></pre>
+
+<p>配置消息发送者,fanout发送消息是无视路由键的。</p>
+
+<pre><code>@RestController
+public class HelloController {
+    @Autowired
+    private AmqpTemplate rabbitTemplate;
+    /**
+     * 采用rabbitmq的fanout exchange模式
+     * @throws Exception
+     */
+    @GetMapping(&quot;/fanout&quot;)
+    public void fanout() throws Exception {
+        String context = &quot;hi, fanout msg &quot;;
+        System.out.println(&quot;Sender : &quot; + context);
+        this.rabbitTemplate.convertAndSend(&quot;fanoutExchange&quot;,&quot;&quot;, context);
+    }
+}
+</code></pre>
+
+<p>配置消息接收者，监听fanoutA队列，方法同direct exchange。例子为A，BC略。</p>
+
+<pre><code>@Component
+@RabbitListener(queues = &quot;fanoutA&quot;)
+public class FanoutReceiverA {
+    @RabbitHandler
+    public void process(String message) {
+        System.out.println(&quot;fanout Receiver A  : &quot; + message);
+    }
+}
+</code></pre>
+
+<h2 id="案例">案例</h2>
+
+<p>这里有我一个rabbitmq的项目<a href="https://github.com/maojiawei/nanhui-mq">案例</a>里面的nanhui-rabbitmq有对应的代码资料，欢迎大家查看并给予意见。</p>
+
+<h2 id="参考资料">参考资料</h2>
+
+<p>SpringBoot与RabbitMQ详解 <a href="http://www.qingpingshan.com/rjbc/java/327466.html">http://www.qingpingshan.com/rjbc/java/327466.html</a><br />
+springboot(八)：RabbitMQ详解 <a href="http://www.ityouknow.com/springboot/2016/11/30/springboot(%E5%85%AB)-RabbitMQ%E8%AF%A6%E8%A7%A3.html">http://www.ityouknow.com/springboot/2016/11/30/springboot(%E5%85%AB)-RabbitMQ%E8%AF%A6%E8%A7%A3.html</a></p>
+
+      </section>
+      
+
+  
+  
+  
+  
+  
+
+
+    </article>
+    <div class="ph3 mt2 mt6-ns">
+      
+
+
+
+
+
+
+
+  <div class="bg-light-gray pa3">
+    <ul>
+      <li class="list b mb3">
+        3 More Posts
+      </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/post/microservice/mysql-slow-log-to-elk/" class="link ph2 pv2 db black">
+            mysql慢日志查询（ELK方式）
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/post/microservice/rabbitmq-introduce/" class="link ph2 pv2 db black o-50">
+            springboot与rabbitmq整合
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/post/container/skydns-error/" class="link ph2 pv2 db black">
+            skydns出现的错误
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/post/microservice/spring-cloud-introduce/" class="link ph2 pv2 db black">
+            Spring Cloud 介绍
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+    </div>
+  </div>
+
+    </main>
+    <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://jovi.io/" >
+    &copy; 2017 jovi&#39;s blog
+  </a>
+  
+
+
+
+
+
+
+
+  <a href="https://github.com/maojiawei" class="link-transition github link dib z-999 pt3 pt0-l mr2" title="Github link">
+    <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+  </a>
+
+
+  </div>
+</footer>
+
+    <script src="http://jovi.io/dist/app.bundle.js" async></script>
+
+  </body>
+</html>
