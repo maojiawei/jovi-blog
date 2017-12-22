@@ -1,32 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Kubernetes on jovi&#39;s blog</title>
-    <link>http://jovi.io/tags/kubernetes/</link>
-    <description>Recent content in Kubernetes on jovi&#39;s blog</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    <lastBuildDate>Tue, 12 Dec 2017 10:09:09 +0800</lastBuildDate>
-    
-	<atom:link href="http://jovi.io/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>skydns出现的错误</title>
-      <link>http://jovi.io/post/container/skydns-error/</link>
-      <pubDate>Tue, 12 Dec 2017 10:09:09 +0800</pubDate>
-      
-      <guid>http://jovi.io/post/container/skydns-error/</guid>
-      <description> kubernetes的dns一直采用的是第三方dns(skydns)，经常出问题。这篇文章主要提供给他们解决该类问题的方法，一般情况如下。
-[root@k8s-1 test]# kubectl exec nginx -i -t -- /bin/bash root@nginx:/# cat /etc/resolv.conf nameserver 10.254.0.2 search default.svc.cluster.local. svc.cluster.local. cluster.local. options ndots:5 root@nginx:/# ping my-nginx ping: unknown host  dns服务 如果遇到DNS问题，首先查看DNS的服务有没有问题。一般DNS默认为3个，如果3个为说明没有问题。
-kubectl get po -n kube-system  显示如下，则正常:
-如果显示异常，则删除原先pod,注:{dns-podname}表示上面查到的pod名称
-kubectl delete po {dns-podname} -n kube-system  kube-proxy kubernetes的DNS出了问题首先要检查各个节点kube-proxy服务是否正常。
-systemctl status kube-proxy.service  显示如下,则正常:
-如果显示异常，则运行
-systemctl start kube-proxy.service  其他 如果还有问题，请检查iptables，具体如下。
-systemctl stop kubelet systemctl stop docker iptables --flush iptables -tnat --flush systemctl start kubelet systemctl start docker  </description>
-    </item>
-    
-  </channel>
-</rss>
