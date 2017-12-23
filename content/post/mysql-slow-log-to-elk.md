@@ -2,7 +2,7 @@
 title: "mysql慢日志查询（ELK方式）"
 date: 2017-12-21T18:35:29+08:00
 draft: false
-tags: ["mysql","日志"]
+tags: ["microservice"]
 ---
 
 # 简介
