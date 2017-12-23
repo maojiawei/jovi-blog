@@ -2,7 +2,8 @@
 title: "Spring Cloud 介绍"
 date: 2017-12-11T22:46:33+08:00
 draft: false
-tags: ["microservice"]
+tags: ["spring"]
+categories: "microservice"
 ---
 ## 简介
 Spring cloud是目前最流行的微服务框架。它是在spring boot的基础上构建的，用于快速构建分布式系统的通用模式的工具集。Spring Cloud 包含了许多子项目，提供了一些工具来快速构建分布式系统中一些常用模式，分布式配置管理、服务注册和发现、断路器、智能路由、全局锁等。  

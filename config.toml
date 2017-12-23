@@ -30,4 +30,14 @@ pygmentCodeFences = true
   email = "maojiaweix@126.com"
   github = "maojiawei"
 
+[[menu.main]]
+    identifier = "container"
+    name = "容器云"
+    url = "categories/container"
+    weight = 1
 
+[[menu.main]]
+    identifier = "microservice"
+    name = "微服务"
+    url = "categories/microservice"
+    weight = 1
