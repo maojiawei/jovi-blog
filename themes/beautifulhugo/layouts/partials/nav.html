@@ -11,20 +11,20 @@
     </div>
 
     <div class="collapse navbar-collapse" id="main-navbar">
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right" >
         {{ range .Site.Menus.main.ByWeight }}
           {{ if .HasChildren }}
             <li class="navlinks-container">
-              <a class="navlinks-parent" href="javascript:void(0)">{{ .Name }}</a>
+              <a class="navlinks-parent" href="javascript:void(0)" style="font-size: 15px;">{{ .Name }}</a>
               <div class="navlinks-children">
                 {{ range .Children }}
-                  <a href="{{ .URL | relLangURL }}">{{ .Name }}</a>
+                  <a href="{{ .URL | relLangURL }}" style="font-size: 15px;">{{ .Name }}</a>
                 {{ end }}
               </div>
             </li>
           {{ else }}
             <li>
-              <a title="{{ .Name }}" href="{{ .URL  | relLangURL }}">{{ .Name }}</a>
+              <a title="{{ .Name }}" href="{{ .URL  | relLangURL }}" style="font-size: 15px;">{{ .Name }}</a>
             </li>
           {{ end }}
         {{ end }}

@@ -1,7 +1,7 @@
 ---
 title: "Spring Cloud Stream介绍（以Rabbitmq为例）"
 date: 2017-12-24T16:51:41+08:00
-draft: true
+draft: false
 tags: ["spring"]
 categories: "microservice"
 ---
