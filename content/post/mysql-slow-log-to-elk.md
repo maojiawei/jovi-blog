@@ -108,6 +108,20 @@ Time                 Id Command    Argument
 SET timestamp=1513939014;
 select sleep(30) as b, 10 as c;
 ```
+## 系统调优
+elasticsearch 6.0以上需要对系统进行调优
+```
+cat << EOF > /etc/security/limits.conf
+* soft nofile 65536
+* hard nofile 131072
+* soft nproc 2048
+* hard nproc 4096
+EOF
+cat << EOF > /etc/sysctl.conf
+vm.max_map_count=655360
+EOF
+sysctl -p
+```
 ## elasticsearch服务
 ### 服务创建
 ```
