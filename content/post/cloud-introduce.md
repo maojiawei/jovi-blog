@@ -9,7 +9,7 @@ categories: "container"
 ![云时代](../images/cloud/cloud.jpg)
 
 ## 云计算简史
-现在云计算的变革已经超乎我们的想象，下图为目前云计算的演变历程。
+现在云计算的变革已经超乎我们的想象，下图为目前云计算的演变历程。在这里，再将其分为如下几个阶段。
 ![云时代演变](../images/cloud/cloud-computing-evolution-road.jpg)
 
 ### 大型主机时代

@@ -34,4 +34,4 @@ spec:
     - port: 3306
 ```
 ## 结语
-该方式可以将mysql的端口在kubernetes中通过NodePort的方式映射出来。
+该方式可以将mysql的端口在kubernetes中通过NodePort的方式映射出来，直接通过NodePort分配的端口加上任意节点的ip即可访问。
