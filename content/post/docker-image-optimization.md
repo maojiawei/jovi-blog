@@ -1,7 +1,9 @@
 ---
 title: "Docker镜像的优化之道"
 date: 2018-01-07T18:42:50+08:00
-draft: true
+draft: false
+tags: ["docker"]
+categories: "container"
 ---
 # 简介
 本文将介绍如何构建docker镜像可以使镜像最小化，构建速度最快。
