@@ -32,7 +32,7 @@ public class UserBO {
     private Long groupId;
 }
 ```
-```
+```java
 @Repository
 public interface UserRepository extends CrudRepository<UserBO, Long>, JpaRepository<UserBO, Long>,PagingAndSortingRepository<UserBO, Long> ,JpaSpecificationExecutor<UserBO> {
     /**
@@ -54,8 +54,8 @@ public interface UserRepository extends CrudRepository<UserBO, Long>, JpaReposit
 ```
 
 ## 解决方案
-采用以下方法`(:groupId is null or  user.groupId =:groupId）`先判断groupId是否为空。
-```
+采用以下方法`(:groupId is null or  user.groupId =:groupId）`先判断groupId是否为空。这样即使groupId参数为空，那么就会跳过该查询条件。
+```java
 @Repository
 public interface UserRepository extends CrudRepository<UserBO, Long>, JpaRepository<UserBO, Long>,PagingAndSortingRepository<UserBO, Long> ,JpaSpecificationExecutor<UserBO> {
     /**
