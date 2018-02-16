@@ -41,3 +41,9 @@ pygmentCodeFences = true
     name = "微服务"
     url = "categories/microservice"
     weight = 1
+
+[[menu.main]]
+    identifier = "devops"
+    name = "devops"
+    url = "categories/devops"
+    weight = 1
