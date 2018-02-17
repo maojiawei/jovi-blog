@@ -35,6 +35,7 @@ docker run --name jenkins -p 8080:8080 -p 50000:50000 -v ~/jenkins:/var/jenkins_
 ![jenkins定制化](../images/jenkins/customizejenkins.jpeg)  
 
 ## 安装问题
+### docker权限问题
 在centos的环境下使用docker安装jenkins会出现以下问题
 ```
 Can not write to /var/jenkins_home/copy_reference_file.log. Wrong volume permissions?
@@ -49,3 +50,9 @@ setenforce 0
 ```
 docker run --name jenkins -p 8080:8080 -p 50000:50000 -v ~/jenkins:/var/jenkins_home -u 0 -d jenkinsci/jenkins:2.89.4-alpine
 ```
+### 插件问题
+由于网络等原因，在插件安装的过程中可能会出现无法安装的情况。我们可以通过修改插件的代理来解决。  
+在jenkins的主菜单选择Manage Jenkins并点击Manage Plugins，进入jenkins的插件管理。  
+![jenkins插件管理](../images/jenkins/pluginmanage.jpeg)
+选择tab中的Advanced，在Update Site中输入`https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/current/update-center.json`即可。
+![jenkins更新插件地址](../images/jenkins/pluginproxy.jpeg)
