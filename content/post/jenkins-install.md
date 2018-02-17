@@ -1,7 +1,7 @@
 ---
 title: "Jenkins的安装"
 date: 2018-02-16T11:33:43+08:00
-draft: true
+draft: false
 tags: ["jenkins"]
 categories: "devops"
 ---
@@ -54,5 +54,5 @@ docker run --name jenkins -p 8080:8080 -p 50000:50000 -v ~/jenkins:/var/jenkins_
 由于网络等原因，在插件安装的过程中可能会出现无法安装的情况。我们可以通过修改插件的代理来解决。  
 在jenkins的主菜单选择Manage Jenkins并点击Manage Plugins，进入jenkins的插件管理。  
 ![jenkins插件管理](../images/jenkins/pluginmanage.jpeg)
-选择tab中的Advanced，在Update Site中输入`https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/current/update-center.json`即可。
+选择tab中的Advanced，在Update Site中输入`https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/current/update-center.json`，并点击submit。
 ![jenkins更新插件地址](../images/jenkins/pluginproxy.jpeg)
