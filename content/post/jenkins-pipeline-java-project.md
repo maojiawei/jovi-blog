@@ -11,8 +11,12 @@ categories: "devops"
 我们先准备一个项目，本文的项目可以在 https://github.com/maojiawei/simple-java-maven-app 中查找到，大家注册一个github的账号，并fork下来。  
 其中，有一个非常重要的文件即在项目根目录下的[Jenkinsfile](https://github.com/maojiawei/simple-java-maven-app/blob/master/Jenkinsfile)。  
 该文件的作用是用来指定pipeline的流程。  
-`agent`表示运行pipeline的代理服务器，本文采用的是docker的方式（运行中jenkins会启动一个docker容器，运行一下pipeline，运行完成后自动销毁）。  
-`stages`表示pipeline的步骤，本文先只运行构建命令，所以只有一个stage。
+`agent`表示运行pipeline在哪台机器上执行任务，本文采用的是docker的方式（运行中jenkins会启动一个docker容器，运行一下pipeline，运行完成后自动销毁）。  
+`stages`标识组成工作流的大的步骤，这些步骤是串行的，例如build，test，deploy等。  
+`steps`描述stage中的小步骤，同一个stage中的steps可以并行  
+`sh`执行shell命令  
+`input`需要你手动点击确定，Pipeline才会进入后续环节，常用于部署环节，因为很多时候部署都需要人为的进行一些确认。  
+`post`所有pipeline执行完成后，会进入post环节，该环节一般做一些清理工作，同时还可以判断pipeline的执行状态。  
 ```
 pipeline {
     agent {
