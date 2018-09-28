@@ -1,7 +1,7 @@
 ---
 title: "Spring Boot 集成kafka并实现批量消费"
 date: 2018-05-25T15:05:56+08:00
-draft: true
+draft: false
 tags: ["spring"]
 categories: "microservice"
 ---
