@@ -1,5 +1,5 @@
 ---
-title: "DevOps36计读书笔记"
+title: "DevOps三十六计读书笔记"
 date: 2018-12-10T22:57:28+08:00
 draft: true
 categories: "devops"
