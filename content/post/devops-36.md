@@ -56,4 +56,5 @@ categories: "devops"
 Scrum精髓在于3355元素，分别涵盖了人员组织、团队协作载体、形式、文化等各个方面：  
 3：3个角色，Product Owner、Development Team、Scrum Master。这3个角色放在同一条船上，Product Owner好比掌舵，Development Team是划船的小伙伴，Scrum Master则是在船头敲锣打鼓、鼓舞士气、把我节奏的教练。  
 3：3个工件，产品代办清单(Product Backlog)、迭代代办清单(Sprint Backlog)、产品增量(Increment)。产品代办清单是决定产品最关键的输入，迭代代办清单是团队Sprint的工作项，产品增量是Sprint的产出物。  
-5：
+5：5个事件，迭代(Sprint)、迭代计划(Sprint Planning)、每日站立会(Daily Scrum)、迭代评审(Sprint Review)、迭代回顾(Sprint Retrospective)。
+5：5个价值观，勇气(Coverage)、承诺(Commitment)、专注(Focus)、开放(Openness)、责任(Respect)。
