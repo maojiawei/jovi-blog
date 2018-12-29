@@ -86,3 +86,51 @@ categories: "bigdata"
 &emsp;Hadoop是十分灵活的，它可以处理任何种类的数据。我们叫他"多样性"在我们之前的[大数据入门](https://www.edureka.co/blog/big-data-tutorial)博客中。数据可以是多样的，而Hadoop都可以保存以及处理它们，不管它是结构化的、非结构化的还是半结构化的。    
   
 &emsp;这4个特性使Hadoop成为大数据解决方案的先驱者。现在我们知道了什么是Hadoop，我们可以探索Hadoop的核心组件。让我们一起了解，Hadoop有哪些核心组件?
+
+## 7.0 Hadoop核心组件
+&emsp;当搭建一个Hadoop集群的时候，你可以选择一些服务作为你Hadoop平台的一部分，但是有两个服务是强制的。一个是HDFS（存储），而另一个是YARN（数据处理）。HDFS是Hadoop Distributed File System，它是一个可拓展的存储单元，而YARN被用来以一种分布式串行方式处理HDFS中的数据。  
+
+### 7.1 HDFS
+&emsp;我们先来谈谈HDFS。HDFS的核心组件有两个:NameNode与DataNode。我们先来谈谈这两个组件的功能:
+![hadoop-HDFS](../images/hadoop/HDFS-Hadoop-Tutorial-Edureka-768x326.png)
+
+#### 7.1.1 NameNode
+
+* 它是一个主守护程序，用于维护和管理DataNodes(从属节点)。
+* 它记录了在集群中所有block的元数据，例如:block的所在位置，文件的大小，权限等等。
+* 它记录了在文件系统中每个元数据以及每次的变化
+* 如果文件在HDFS被删除，NameNode会立即将其记录在编辑日志中。
+* 它会经常接收到心跳检查，它会接收在集群中所有的DataNodes中的block报告来确保DataNodes是否存活。
+* 它保存了在HDFS和DataNodes中所有的block信息，包括他们存放在哪里。
+* 它具有高可用性和联合功能，我将在[HDFS架构](https://www.edureka.co/blog/hdfs-tutorial)中详细讨论。
+
+#### 7.1.2 DataNode
+
+* 它是一个从属节点，运行在每个子节点上。
+* 所有的实际数据都保存在DataNodes中。
+* 它主要负责从客户端中提供读写请求。
+* 它主要负责创建block，删除block以及在其他的NameNodes中备份。
+* 它会周期性地发送心跳检查给NameNode来汇报HDFS集群的健康，一般默认频率为3秒。
+
+&emsp;所以，这就是所有关于HDFS的简单描述。我们来谈谈第二个Hadoop的关键组件:YARN。
+
+### 7.2 YARN
+&emsp;YARN也由两个关键组件构成：ResourceManager 和 NodeManager。
+![hadoop-YARN](../images/hadoop/YARN-Hadoop-Tutorial-Edureka.png)
+
+#### 7.2.1 ResourceManager
+
+* 它是一个集群级别(每个集群一个)，在主节点上运行。
+* 它管理在YARN中运行应用的资源和调度。
+* 它有两个组件:Scheduler 和 ApplicationManager。
+* Scheduler负责分配资源。
+* ApplicationManager负责接收job提交，协商执行应用的顺序。
+* 它负责追踪每个节点心跳检查。
+
+#### 7.2.2 NodeManager
+
+* 它是一个节点级别（每个节点一个），运行在每个子节点上。
+* 它负责管理container，监控container的资源利用。
+* 它负责追踪每个节点的健康和日志管理。
+* 它会持续地向ResouceManager联络，保持信息更新。
+
