@@ -47,3 +47,9 @@ pygmentCodeFences = true
     name = "devops"
     url = "categories/devops"
     weight = 1
+
+[[menu.main]]
+    identifier = "bigdata"
+    name = "大数据"
+    url = "categories/bigdata"
+    weight = 1
