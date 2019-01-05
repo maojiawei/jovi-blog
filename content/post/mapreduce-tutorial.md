@@ -93,48 +93,48 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.fs.Path;
  
 public class WordCount{
-public static class Map extends Mapper<LongWritable,Text,Text,IntWritable> {
-public void map(LongWritable key, Text value,Context context) throws IOException,InterruptedException{
-String line = value.toString();
-StringTokenizer tokenizer = new StringTokenizer(line);
-while (tokenizer.hasMoreTokens()) {
-value.set(tokenizer.nextToken());
-context.write(value, new IntWritable(1));
-}
-}
-}
- 
-public static class Reduce extends Reducer<Text,IntWritable,Text,IntWritable> {
-public void reduce(Text key, Iterable<IntWritable> values,Context context) throws IOException,InterruptedException {
-int sum=0;
-for(IntWritable x: values)
-{
-sum+=x.get();
-}
-context.write(key, new IntWritable(sum));
-}
-}
- 
-public static void main(String[] args) throws Exception {
- 
-Configuration conf= new Configuration();
-Job job = new Job(conf,"My Word Count Program");
-job.setJarByClass(WordCount.class);
-job.setMapperClass(Map.class);
-job.setReducerClass(Reduce.class);
-job.setOutputKeyClass(Text.class);
-job.setOutputValueClass(IntWritable.class);
-job.setInputFormatClass(TextInputFormat.class);
-job.setOutputFormatClass(TextOutputFormat.class);
-Path outputPath = new Path(args[1]);
-//Configuring the input/output path from the filesystem into the job
-FileInputFormat.addInputPath(job, new Path(args[0]));
-FileOutputFormat.setOutputPath(job, new Path(args[1]));
-//deleting the output path automatically from hdfs so that we don't have to delete it explicitly
-outputPath.getFileSystem(conf).delete(outputPath);
-//exiting the job only if the flag value becomes false
-System.exit(job.waitForCompletion(true) ? 0 : 1);
-}
+    public static class Map extends Mapper<LongWritable,Text,Text,IntWritable> {
+        public void map(LongWritable key, Text value,Context context) throws IOException,InterruptedException{
+            String line = value.toString();
+            StringTokenizer tokenizer = new StringTokenizer(line);
+            while (tokenizer.hasMoreTokens()) {
+                value.set(tokenizer.nextToken());
+                context.write(value, new IntWritable(1));
+            }
+        }
+    }
+
+    public static class Reduce extends Reducer<Text,IntWritable,Text,IntWritable> {
+        public void reduce(Text key, Iterable<IntWritable> values,Context context) throws IOException,InterruptedException {
+            int sum=0;
+            for(IntWritable x: values)
+            {
+                sum+=x.get();
+            }
+            context.write(key, new IntWritable(sum));
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+
+        Configuration conf= new Configuration();
+        Job job = new Job(conf,"My Word Count Program");
+        job.setJarByClass(WordCount.class);
+        job.setMapperClass(Map.class);
+        job.setReducerClass(Reduce.class);
+        job.setOutputKeyClass(Text.class);
+        job.setOutputValueClass(IntWritable.class);
+        job.setInputFormatClass(TextInputFormat.class);
+        job.setOutputFormatClass(TextOutputFormat.class);
+        Path outputPath = new Path(args[1]);
+        // Configuring the input/output path from the filesystem into the job
+        FileInputFormat.addInputPath(job, new Path(args[0]));
+        FileOutputFormat.setOutputPath(job, new Path(args[1]));
+        // deleting the output path automatically from hdfs so that we don't have to delete it explicitly
+        outputPath.getFileSystem(conf).delete(outputPath);
+        // exiting the job only if the flag value becomes false
+        System.exit(job.waitForCompletion(true) ? 0 : 1);
+    }
 }
 ```
 ## 7.0 详解MapReduce程序
@@ -148,15 +148,14 @@ System.exit(job.waitForCompletion(true) ? 0 : 1);
 &emsp;Map阶段代码：
 ```java
 public static class Map extends Mapper<LongWritable,Text,Text,IntWritable> {
- 
-public void map(LongWritable key, Text value, Context context) throws IOException,InterruptedException {
- 
-String line = value.toString();
-StringTokenizer tokenizer = new StringTokenizer(line);
-while (tokenizer.hasMoreTokens()) {
-value.set(tokenizer.nextToken());
-context.write(value, new IntWritable(1));
-}
+    public void map(LongWritable key, Text value,Context context) throws IOException,InterruptedException{
+        String line = value.toString();
+        StringTokenizer tokenizer = new StringTokenizer(line);
+        while (tokenizer.hasMoreTokens()) {
+            value.set(tokenizer.nextToken());
+            context.write(value, new IntWritable(1));
+        }
+    }
 }
 ```
 ![](../images/mapreduce/Input-Text-File-MapReduce-Tutorial-Edureka-1-258x300.png)
@@ -175,17 +174,14 @@ context.write(value, new IntWritable(1));
 &emsp;Reduce阶段代码：
 ```java
 public static class Reduce extends Reducer<Text,IntWritable,Text,IntWritable> {
- 
-public void reduce(Text key, Iterable<IntWritable> values,Context context)
-throws IOException,InterruptedException {
- 
-int sum=0;
-for(IntWritable x: values)
-{
-sum+=x.get();
-}
-context.write(key, new IntWritable(sum));
-}
+    public void reduce(Text key, Iterable<IntWritable> values,Context context) throws IOException,InterruptedException {
+        int sum=0;
+        for(IntWritable x: values)
+        {
+            sum+=x.get();
+        }
+        context.write(key, new IntWritable(sum));
+    }
 }
 ```
 - 我们可以创建一个Reduce类继承Reducer，类似Mapper。
@@ -204,21 +200,25 @@ context.write(key, new IntWritable(sum));
 
 &emsp;驱动程序：
 ```java
-Configuration conf= new Configuration();
-Job job = new Job(conf,"My Word Count Program");
-job.setJarByClass(WordCount.class);
-job.setMapperClass(Map.class);
-job.setReducerClass(Reduce.class);
-job.setOutputKeyClass(Text.class);
- 
-job.setOutputValueClass(IntWritable.class);
-job.setInputFormatClass(TextInputFormat.class);
-job.setOutputFormatClass(TextOutputFormat.class);
-Path outputPath = new Path(args[1]);
- 
-//Configuring the input/output path from the filesystem into the job
-FileInputFormat.addInputPath(job, new Path(args[0]));
-FileOutputFormat.setOutputPath(job, new Path(args[1]));
+public static void main(String[] args) throws Exception {
+    Configuration conf= new Configuration();
+    Job job = new Job(conf,"My Word Count Program");
+    job.setJarByClass(WordCount.class);
+    job.setMapperClass(Map.class);
+    job.setReducerClass(Reduce.class);
+    job.setOutputKeyClass(Text.class);
+    job.setOutputValueClass(IntWritable.class);
+    job.setInputFormatClass(TextInputFormat.class);
+    job.setOutputFormatClass(TextOutputFormat.class);
+    Path outputPath = new Path(args[1]);
+    // Configuring the input/output path from the filesystem into the job
+    FileInputFormat.addInputPath(job, new Path(args[0]));
+    FileOutputFormat.setOutputPath(job, new Path(args[1]));
+    // deleting the output path automatically from hdfs so that we don't have to delete it explicitly
+    outputPath.getFileSystem(conf).delete(outputPath);
+    // exiting the job only if the flag value becomes false
+    System.exit(job.waitForCompletion(true) ? 0 : 1);
+}
 ```
 - 在驱动程序中，我们可以定义MapReduce的job在Hadoop中运行。
 - 我们可以定义job的名称，mapper和reducer对应的数据输入与输出。
