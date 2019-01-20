@@ -2,6 +2,7 @@
 title: "Mapreduce入门"
 date: 2019-01-03T13:26:04+08:00
 draft: false
+tags: ["hadoop"]
 categories: "bigdata"
 ---
 ## 1.0 引言

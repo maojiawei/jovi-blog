@@ -2,6 +2,7 @@
 title: "Hadoop入门"
 date: 2018-12-19T22:25:56+08:00
 draft: false
+tags: ["hadoop"]
 categories: "bigdata"
 ---
 &emsp;如果正在学习Hadoop，这是一篇最好的入门文章。在这篇关于Hadoop入门的博客中，你将会在几个简单的阶段中从hadoop的基础到高阶概念。另外，你也可以看下方的视频，该视频会由我们的Hadoop专家通过实际的例子来讲解Hadoop的基本概念。  
