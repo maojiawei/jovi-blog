@@ -53,3 +53,9 @@ pygmentCodeFences = true
     name = "大数据"
     url = "categories/bigdata"
     weight = 1
+
+[[menu.main]]
+    identifier = "AI"
+    name = "人工智能"
+    url = "categories/AI"
+    weight = 1
