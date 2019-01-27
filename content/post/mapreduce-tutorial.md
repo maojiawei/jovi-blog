@@ -1,6 +1,6 @@
 ---
 title: "Mapreduce入门"
-date: 2019-01-03T13:26:04+08:00
+date: 2019-01-08T13:26:04+08:00
 draft: false
 tags: ["hadoop"]
 categories: "bigdata"
