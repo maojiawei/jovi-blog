@@ -68,6 +68,22 @@ categories: "devops"
 &emsp;这是个永不停止的循环，DevOps的logo对我来说意义重大。看看上图—还有什么能比无穷大的符号更符合DevOps？
 
 &emsp;现在，我们一起来看看DevOps是如何处理开发和运维所面临的挑战的。在下面的表格中描述了DevOps如何解决开发的挑战。
+![DevOps面向开发人员挑战](../images/devops/Above table states-how-DevOps-solves-Dev-Challenges.png)
+下面的表格中描述了DevOps如何解决运维的挑战。
+![DevOps面向运维人员挑战](../images/devops/Above table states how-DevOps-solves-Ops-Challenges.png)
+&emsp;现在你可能想知道，如何实现DevOps。为了实现DevOps，除了需要在文件上认同它，还需要以一些DevOps工具，例如：Puppet,Jenkins,GIT,Chef,Docker,Selenium,AWS等等来完成自动化。它们可以在不同阶段帮助你们完成持续开发、持续集成、持续测试、持续部署和持续监控，帮助让你快速完成一个合格软件交付给客户。
+&emsp;现在我们可以来看看下方的DevOps图，它介绍了许多DevOps工具。
+![DevOps工具](../images/devops/DevOps-Tools-DevOps-Tutorial-Edureka-1.png)
+&emsp;这些工具可以根据DevOps的不同阶段来进行分类。因此，我首先会介绍下DevOps的各个阶段，然后再介绍各类工具。
+&emsp;DevOps的生命周期可以划分为以下几个阶段：
 
+- 持续开发
+- 持续集成
+- 持续测试
+- 持续监控
+- 虚拟化与容器化
 
+&emsp;这些阶段构成了一个循环来达到DevOps。
+&emsp;这就是DevOps入门系列的第一部分。
 
+注：这篇文章翻译自:https://www.edureka.co/blog/devops-tutorial
