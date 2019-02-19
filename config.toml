@@ -31,6 +31,12 @@ pygmentCodeFences = true
   github = "maojiawei"
 
 [[menu.main]]
+    identifier = "program language"
+    name = "程序语言"
+    url = "categories/program language"
+    weight = 1
+
+[[menu.main]]
     identifier = "container"
     name = "容器云"
     url = "categories/container"
