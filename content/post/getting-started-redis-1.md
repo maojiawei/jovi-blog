@@ -14,15 +14,15 @@ categories: "microservice"
 
 <table>
     <thead> 
-        <th width="49">数据类型</th>
-        <th  width="49">描述</th>
-        <th width="50px">详细说明</th>
+        <th width="50">数据类型</th>
+        <th width="50">描述</th>
+        <th >详细说明</th>
     </thead>   
     <tbody>
         <tr>
             <td>STRING</td>
             <td>字符串、整数或浮点数</td>
-            <td>对整个字符串或者字符串中的一部分执行操作，对整个整数或者浮点执行自增(increment)或者自减(decrement)操作。</td>
+            <td>对整个字符串或者字符串中的一部分执行操作<br/>对整个整数或者浮点执行自增(increment)或者自减(decrement)操作。</td>
         </tr>
         <tr>
             <td>LIST</td>
