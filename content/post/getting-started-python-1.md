@@ -1,7 +1,7 @@
 ---
 title: "Python入门-1"
 date: 2019-02-15T13:24:26+08:00
-draft: false
+draft: true
 tags: ["python"]
 categories: "program language"
 ---
