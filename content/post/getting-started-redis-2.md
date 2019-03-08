@@ -26,7 +26,7 @@ categories: "microservice"
     在命令行中输入以下命令，可以启动一个redis的docker容器。  
    ```shell
    docker run -d --name=redis -p 6379:6379 redis:5.0.3-alpine
-   ``` 
+   ```
    命令说明:  
    **docker run**为docker启动容器。  
    **-d**为后台启动程序。  
@@ -35,12 +35,12 @@ categories: "microservice"
    **redis:5.0.3-alpine**为镜像名称及版本号,一般为**镜像:版本号**。  
    运行结果如下:  
    ![启动容器](../images/redis/docker-run-redis.png)
-   
+
 (3) **检查容器**  
     在命令行中输入以下命令，查看容器是否正常运行。  
    ```shell
    docker ps -a
-   ``` 
+   ```
    命令说明:  
    docker ps -a 查看容器。  
    运行结果如下,如果存在redis且状态为Up，说明创建成功:  
@@ -50,7 +50,7 @@ categories: "microservice"
     在命令行中输入以下命令，可以进入容器。  
    ```shell
    docker exec -ti redis sh
-   ``` 
+   ```
    命令说明:  
    **docker exec -ti**表示通过交互式方式进入容器。  
    **redis**是之前创建的容器名。  
@@ -66,11 +66,43 @@ redis-cli -h ${host} -p ${port} -a ${password}
 ```
 命令说明:  
 **redis-cli**为进入redis客户端命令。  
-**-h ${host}**中的${host}为需要访问redis服务端的ip或主机名，默认本机可省略。  
+**-h ${host}**中的${host}为需要访问redis服务端的ip或主机名，默认当前主机可省略。  
 **-p ${port}**中的${port}为需要访问redis服务端的端口，默认端口可省略。  
-**-a ${password}**中的${password}为需要访问redis服务端的密码，无密码可省略。  
+**-a ${password}**中的​${password}为需要访问redis服务端的密码，无密码可省略。  
 运行结果如下:  
 ![redis客户端](../images/redis/redis-cli.png)
 
 #### 2.2 常用基本操作
 
+&emsp;常用的redis命令如下所示:
+
+<table>
+    <thead> 
+        <th width="50">序号</th>
+        <th width="50">命令</th>
+        <th >参数</th>
+        <th >描述</th>
+    </thead>   
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>链表</td>
+            <td>一个链表，链表上的每个节点都包含了一个字符串，从链表的两端推入或者弹出元素，根据偏移量对链表进行修剪(trim)，读取单个或者多个元素，根据值查找或者移除元素。</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>无序集合</td>
+            <td>包含字符串的无序收集器(unordered collection)、并且被包含的每个字符串都是独一无二的。添加，获取，移除单个元素，检查一个元素是否存在于集合中，计算交集，并集，差集，从集合里面随机获取元素。</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>包含键值对的无序散列对</td>
+            <td>包含键值对无序散列表，添加，获取，移除当键值对，获取所有键值对。</td>
+        </tr>
+    </tbody>
+</table>
