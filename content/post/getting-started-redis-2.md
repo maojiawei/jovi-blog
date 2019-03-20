@@ -76,33 +76,183 @@ redis-cli -h ${host} -p ${port} -a ${password}
 
 &emsp;常用的redis命令如下所示:
 
+1.命令:exist ${key}   
+描述:检查给定key是否存在，返回1表示存在，0不存在  
+参数:${key}为redis的键  
+举例:
+
+```shell
+127.0.0.1:6379> exists demo
+(integer) 1
+```
+
+2.命令:del ${key}  
+描述:在key存在时用于删除key  
+参数:${key}为redis的键  
+举例:
+
+```shell
+127.0.0.1:6379> del demo
+(integer) 1
+```
+
+3.命令:KEYS ${pattern}  
+描述:根据匹配模式查找key  
+参数:${pattern}为给定的匹配模式  
+例如:demo:* 将会匹配所有key为demo:开头的key  
+举例:
+
+```shell
+127.0.0.1:6379> keys demo:*
+1) "demo:1"
+2) "demo:3"
+3) "demo:2"
+```
+
+4.命令:expire ${key} ${seconds}  
+描述:为key设置生存时间   
+参数:${key}为redis的键<br/> ${seconds}为保存的秒，单位:秒  
+```shell
+127.0.0.1:6379> expire demo:1 5
+(integer) 1
+``` 
+
+5.命令:persist ${key}  
+描述:移除key的过期时间，使key不管多久都会保存  
+参数:${key}为redis的键  
+```shell
+127.0.0.1:6379> persist demo:1
+(integer) 1
+``` 
+
+#### 2.3 字符串类型(String)
+
+&emsp;字符串类型包括字符串、浮点型和整型，常用的redis命令如下所示:
+
+1.命令:set ${key} ${value}   
+  描述:为指定的key设置值  
+  参数:${key}为redis的键 ${value}为键对应的值  
+  ```shell
+  127.0.0.1:6379> set demo testvalue
+  OK
+  ``` 
+2.命令:get ${key}
+  描述:获取指定key的值  
+  参数:${key}为redis的键  
+  ```shell
+  127.0.0.1:6379> get demo
+  "testvalue"
+  ``` 
+  
+3.命令:setnx ${key} ${value}
+  描述:只有当key不存在时设置key的值。  
+  参数:${key}为redis的键 ${value}为键对应的值
+  ```shell
+  # setnx一个已经存在的key会显示0，即没有任何key被改变
+  127.0.0.1:6379> setnx demo 111
+  (integer) 0
+  127.0.0.1:6379> get demo
+  "testvalue"
+  # 如果不存在，才设置
+  127.0.0.1:6379> setnx demonx demo1
+  (integer) 1
+  ``` 
+
+4.命令:SETEX ${key} ${seconds} ${value}
+  描述:只有当key不存在时设置key的值。  
+  参数:${key}为redis的键 ${value}为键对应的值
+  ```shell
+  # setnx一个已经存在的key会显示0，即没有任何key被改变
+  127.0.0.1:6379> setnx demo 111
+  (integer) 0
+  127.0.0.1:6379> get demo
+  "testvalue"
+  # 如果不存在，才设置
+  127.0.0.1:6379> setnx demonx demo1
+  (integer) 1
+  ``` 
+
 <table>
     <thead> 
-        <th width="50">序号</th>
-        <th width="50">命令</th>
-        <th >参数</th>
+        <th width="70">序号</th>
+        <th width="230">命令</th>
         <th >描述</th>
+        <th width="200">参数</th>
+    </thead>   
+    <tbody>
+        <tr>
+            <td>3</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td></td>
+            <td>将值 value 关联到 key ，并将 key 的过期时间设为 seconds (以秒为单位)。</td>
+            <td>${key}为redis的键<br/> ${value}为键对应的值<br/> ${seconds}为过期时间</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>incr ${key}</td>
+            <td>针对整数型数据，数字值加一</td>
+            <td>${key}为redis的键</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>decr ${key}</td>
+            <td>针对整数型数据，数字值减一</td>
+            <td>${key}为redis的键</td>
+        </tr>
+    </tbody>
+</table>
+
+#### 2.4 哈希类型(Hash)
+
+&emsp;hash 是一个string类型的field和value的映射表，hash特别适合用于存储对象。
+<table>
+    <thead> 
+        <th width="70">序号</th>
+        <th width="230">命令</th>
+        <th >描述</th>
+        <th width="200">参数</th>
     </thead>   
     <tbody>
         <tr>
             <td>1</td>
-            <td></td>
-            <td></td>
+            <td>hmset ${key} ${field1} ${value1} [${field2} ${value2}]</td>
+            <td>同时将多个field-value(域-值)对设置到哈希表 key 中。</td>
+            <td>${key}为redis的键<br/> ${field1}为键中对应的域(相当于对象的属性) ${value1}为域对应的值 可以为多个</td>
         </tr>
         <tr>
             <td>2</td>
-            <td>链表</td>
-            <td>一个链表，链表上的每个节点都包含了一个字符串，从链表的两端推入或者弹出元素，根据偏移量对链表进行修剪(trim)，读取单个或者多个元素，根据值查找或者移除元素。</td>
+            <td>HDEL key ${field1} [${field2}...] </td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
             <td>3</td>
-            <td>无序集合</td>
-            <td>包含字符串的无序收集器(unordered collection)、并且被包含的每个字符串都是独一无二的。添加，获取，移除单个元素，检查一个元素是否存在于集合中，计算交集，并集，差集，从集合里面随机获取元素。</td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
             <td>4</td>
-            <td>包含键值对的无序散列对</td>
-            <td>包含键值对无序散列表，添加，获取，移除当键值对，获取所有键值对。</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
     </tbody>
 </table>
