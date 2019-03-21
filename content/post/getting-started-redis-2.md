@@ -265,8 +265,66 @@ redis-cli -h ${host} -p ${port} -a ${password}
     4) "21"
   ``` 
 
-### 2.5 哈希类型(Hash)
+### 2.5 列表类型(LIST)
 
-&emsp;hash 是一个string类型的field和value的映射表，hash特别适合用于存储对象，常用的redis命令如下所示:
+&emsp;列表是简单的字符串列表，按照插入顺序排序，常用的redis命令如下所示:
+
+1.命令:lpush ${key} ${value1} [${value2} ...]   
+  描述:将一个或多个值插入列表头部，注意后面插入的数据会在前面  
+  参数:${key}为redis的键 ${value1}为对应的数据，可以为多个  
+  ```shell
+  127.0.0.1:6379> lpush sports football
+  (integer) 1
+  127.0.0.1:6379> lpush sports basketball
+  (integer) 2
+  ``` 
+
+2.命令:rpush ${key} ${value1} [${value2} ...]   
+  描述:在列表中添加一个或多个值，注意后面插入的数据会在后面  
+  参数:${key}为redis的键 ${value1}为对应的数据，可以为多个  
+  ```shell
+  127.0.0.1:6379> rpush sports tennis
+  (integer) 3
+  ``` 
+
+3.命令:lrange ${key} ${start} ${end}   
+  描述:获取列表指定范围内的元素列表  
+  参数:${key}为redis的键 ${value1}为对应的数据，可以为多个  
+  ```shell
+  127.0.0.1:6379> lrange sports 0 10
+  1) "basketball"
+  2) "football"
+  3) "tennis"
+  ``` 
+
+4.命令:llen ${key}   
+  描述:获取列表长度  
+  参数:${key}为redis的键  
+  ```shell
+  127.0.0.1:6379> llen sports
+  (integer) 3
+  ``` 
+  
+5.命令:lpop ${key}   
+  描述:移除列表的第一个元素  
+  参数:${key}为redis的键  
+  ```shell
+  127.0.0.1:6379> lpop sports
+  "basketball"
+  127.0.0.1:6379> lrange sports 0 10
+  1) "football"
+  2) "tennis"
+  ``` 
+  
+5.命令:rpop ${key}   
+  描述:移除列表的最后一个元素  
+  参数:${key}为redis的键  
+  ```shell
+  127.0.0.1:6379> rpop sports
+  "tennis"
+  127.0.0.1:6379> lrange sports 0 10
+  1) "football"
+  ```
+ 
   
   
