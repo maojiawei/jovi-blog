@@ -4,6 +4,7 @@ date: 2017-12-24T16:51:41+08:00
 draft: false
 tags: ["spring"]
 categories: "microservice"
+toc: false
 ---
 # 简单介绍
 之前我们介绍了如何使用spring boot整合rabbitmq来做微服务的消息中间件（[springboot与rabbitmq整合](http://jovi.io/post/springboot-rabbitmq-introduce/)），这篇文章将会使用spring cloud stream来整合rabbitmq实现消息队列。  

@@ -4,6 +4,7 @@ date: 2018-01-20T12:41:00+08:00
 draft: false
 tags: ["spring"]
 categories: "microservice"
+toc: false
 ---
 spring data在很大程度上可以简化我们的代码，提高代码的开发质量。但最近在项目中遇到了以下问题，特别做下记录与大家分享。  
 ## 场景

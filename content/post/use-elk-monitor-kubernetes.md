@@ -4,6 +4,7 @@ date: 2017-12-29T16:41:27+08:00
 draft: false
 tags: ["kubernetes","elastic"]
 categories: "container"
+toc: false
 ---
 # 简介
 目前监控kubernetes的工具主要以Prometheus为主，但Prometheus的学习成本很高，而最新的metricbeat6.1开始加入了针对kubernetes的监控，可以解决在kubernetes监控的问题。本文介绍的是如何使用elastic技术栈来解决监控kubernetes的问题。

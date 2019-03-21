@@ -4,6 +4,7 @@ date: 2019-02-15T13:24:26+08:00
 draft: true
 tags: ["python"]
 categories: "program language"
+toc: false
 ---
 最近正在学习Python，希望能够将学习的一些进展以及成果整理，并分享给大家。
 ### 1.0 简介

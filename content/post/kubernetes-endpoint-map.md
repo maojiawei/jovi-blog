@@ -4,6 +4,7 @@ date: 2018-01-05T18:38:26+08:00
 draft: false
 tags: ["kubernetes"]
 categories: "container"
+toc: false
 ---
 ## 简介
 kubernetes针对内部pod对外暴露服务一般是通过将service通过标签选择器关联pod，然后对外暴露服务。如果将kubernetes外部的服务，例如mysql、glusterfs对外部暴露或者对内部采用service的方式提供服务，就可以使用endpoint。

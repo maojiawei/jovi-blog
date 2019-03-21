@@ -4,6 +4,7 @@ date: 2018-09-28T12:51:17+08:00
 draft: false
 tags: ["spring"]
 categories: "microservice"
+toc: false
 ---
 # 简介
 数据库密码的明文是软件开发的大忌，因此我们需要在平时的开发中就特别注意，数据库的加密。

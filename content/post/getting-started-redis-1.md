@@ -4,6 +4,7 @@ date: 2019-02-19T18:31:35+08:00
 draft: false
 tags: ["redis"]
 categories: "microservice"
+toc: true
 ---
 ## 1.0 简介
 &emsp;Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。从2010年3月15日起，Redis的开发工作由VMware主持。从2013年5月开始，Redis的开发由Pivotal赞助。

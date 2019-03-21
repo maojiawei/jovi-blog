@@ -4,6 +4,7 @@ date: 2019-01-08T13:26:04+08:00
 draft: false
 tags: ["hadoop"]
 categories: "bigdata"
+toc: false
 ---
 ## 1.0 引言
 &emsp;在这篇博客中，我将向你推荐MapReduce，这在Hadoop框架中是一个核心的数据处理模块。在开始了解之前,我建议你先熟悉HDFS的概念，而我已经介绍了这些相关内容在[HDFS入门](https://www.edureka.co/blog/apache-hadoop-hdfs-architecture/)中。这将帮助你更快更容易地了解MapReduce。  

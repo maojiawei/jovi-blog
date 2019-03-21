@@ -4,6 +4,7 @@ date: 2017-12-12T10:09:09+08:00
 draft: false
 tags: ["kubernetes"]
 categories: "container"
+toc: false
 ---
 kubernetes的dns一直采用的是第三方dns(skydns)，经常出问题。这篇文章主要提供给他们解决该类问题的方法，一般情况如下。  
 ```

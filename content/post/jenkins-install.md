@@ -4,6 +4,7 @@ date: 2018-02-16T11:33:43+08:00
 draft: false
 tags: ["jenkins"]
 categories: "devops"
+toc: false
 ---
 ## 简介
 [jenkins](https://jenkins.io)是目前最主流的CI产品，是一套基于java开发的持续集成工具，同时，jenkins作为一个开放的平台，集成了大量开发者为其定义的插件。  

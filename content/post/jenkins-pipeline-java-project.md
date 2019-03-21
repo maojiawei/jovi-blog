@@ -4,6 +4,7 @@ date: 2018-02-17T10:30:32+08:00
 draft: false
 tags: ["jenkins"]
 categories: "devops"
+toc: false
 ---
 ## 简介
 [上文](http://jovi.io/post/jenkins-install/)介绍了安装jenkins的流程，现在我们如何使用Jenkins的pipeline。

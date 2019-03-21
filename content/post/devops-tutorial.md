@@ -3,6 +3,7 @@ title: "DevOps入门"
 date: 2019-01-28T11:18:32+08:00
 draft: false
 categories: "devops"
+toc: false
 ---
 &emsp;出于对devops的浓厚兴趣，我开始考虑写一系列博客，这些博客将教导你在平时的软件开发中采用这种新文化，并帮助你理解它的全部内容。这是这系列博客的开篇—DevOps入门。
 

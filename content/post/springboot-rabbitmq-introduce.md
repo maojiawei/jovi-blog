@@ -4,6 +4,7 @@ date: 2017-12-17T18:20:30+08:00
 draft: false
 tags: ["spring"]
 categories: "microservice"
+toc: false
 ---
 ## 简单介绍
 微服务中消息队列也是最终的一块，主要解决在微服务中应用，异步消息等问题。目前使用较多的消息队列有：kafka、rabbitmq、zeromq以及activeMQ等。本章重点介绍的是rabbitmq。

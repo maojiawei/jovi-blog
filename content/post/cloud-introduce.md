@@ -4,6 +4,7 @@ date: 2018-01-03T21:19:35+08:00
 draft: false
 tags: ["cloud"]
 categories: "container"
+toc: false
 ---
 随着互联网时代的到来，我们的社会正在日新月异的变革中。云计算，已成为大家最耳熟能详的单词。但对大多数人而言，甚至是IT从业人员，还是有很多人不了解,到底什么是云?为什么需要云？云可以解决我们什么问题？
 ![云时代](../images/cloud/cloud.jpg)
