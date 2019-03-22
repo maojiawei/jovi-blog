@@ -1,7 +1,7 @@
 ---
 title: "redis入门实战之二:安装与使用"
 date: 2019-02-19T18:31:35+08:00
-draft: true
+draft: false
 tags: ["redis"]
 categories: "microservice"
 toc: true
@@ -130,7 +130,7 @@ redis-cli -h ${host} -p ${port} -a ${password}
 
 ### 2.3 字符串类型(String)
 
-&emsp;字符串类型包括字符串、浮点型和整型，常用的redis命令如下所示:
+&emsp;字符串类型包括字符串、浮点型和整型。常用的redis命令如下所示:
 
 1.命令:set ${key} ${value}     
   描述:为指定的key设置值    
@@ -201,7 +201,7 @@ redis-cli -h ${host} -p ${port} -a ${password}
 
 ### 2.4 哈希类型(Hash)
 
-&emsp;hash 是一个string类型的field和value的映射表，hash特别适合用于存储对象，常用的redis命令如下所示:
+&emsp;hash 是一个string类型的field和value的映射表，hash特别适合用于存储对象。常用的redis命令如下所示:
 
 1.命令:hmset ${key} ${field1} ${value1} [${field2} ${value2} ....]  
   描述:同时将多个field-value(域-值)对设置到哈希表key中  
@@ -267,7 +267,7 @@ redis-cli -h ${host} -p ${port} -a ${password}
 
 ### 2.5 列表类型(List)
 
-&emsp;列表是简单的字符串列表，按照插入顺序排序，常用的redis命令如下所示:
+&emsp;列表是简单的字符串列表，按照插入顺序排序。常用的redis命令如下所示:
 
 1.命令:lpush ${key} ${value1} [${value2} ...]   
   描述:将一个或多个值插入列表头部，注意后面插入的数据会在前面  
@@ -328,7 +328,7 @@ redis-cli -h ${host} -p ${port} -a ${password}
   
 ### 2.6 集合类型(Set)
 
-&emsp;Set是有String类型组成的集合，在集合中，所有成员都是唯一的，常用的redis命令如下所示:  
+&emsp;Set是有String类型组成的集合。在集合中，所有成员都是唯一的。常用的redis命令如下所示:  
   
 1.命令:SADD ${key} ${value1} [${value2} ...]  
   描述:向集合中添加一个或多个成员  
@@ -392,6 +392,74 @@ redis-cli -h ${host} -p ${port} -a ${password}
   描述:返回指定集合中的交集  
   参数:${key1}为redis的键，可以为多个 
 
+### 2.7 有序集合类型(Sorted Set)
 
+&emsp;有序集合与集合一样，都不允许重复数据。但有序集合中的每一个成员都会关联一个double类型的分数，可以通过这些分数进行排序。有序集合的成员是唯一的，但是分数可以重复。  
+&emsp;常用的redis命令如下所示:  
+
+1.命令:zadd ${key} ${score1} ${member1} [${score2} ${member2} ...]   
+  描述:向有序集合中添加一个或多个成员；如果成员已存在，则会更新成员分数  
+  参数:${key}为redis的键 ${score}为成员对应的分数 ${member}为成员  
+  ```shell
+  127.0.0.1:6379> zadd database 2 mysql 1 oracle 3 access 2 sqlserver 4 redis
+  (integer) 5
+  ```
+
+2.命令:zcard ${key}   
+  描述:获得有序集合的成员总数  
+  参数:${key}为redis的键  
+  ```shell
+  127.0.0.1:6379> zcard database
+  (integer) 5
+  ```
+
+3.命令:zcount ${key} ${min} ${max}    
+  描述:判断两个分值之间的共有多少个数据  
+  参数:${key}为redis的键 ${min}为分数的最低值 ${max}为分数的最高值 
+  ```shell
+  127.0.0.1:6379> ZCOUNT database 3 6
+  (integer) 2
+  ```
+
+4.命令:zrank ${key} ${member}     
+  描述:返回有序集合中某个成员对应的索引  
+  参数:${key}为redis的键 ${member}为需要查看索引的成员 
+  ```shell
+  127.0.0.1:6379> ZRANK database redis
+  (integer) 4
+  ```
+
+5.命令:zrevrange ${key} ${start} ${stop} [${withscore}]     
+  描述:返回有序集中指定区间内的成员，通过索引，分数从高到低  
+  参数:${key}为redis的键 ${start}为最低的分数 ${stop}为最高的分数 ${withscore}表示是否需要显示分数，可不写 
+  ```shell
+  127.0.0.1:6379> zrevrange database 1 3
+  1) "access"
+  2) "sqlserver"
+  3) "mysql"
+  ```
+
+6.命令:	zrevrangebyscore ${key} ${max} ${min} [${withscore}]     
+  描述:返回有序集中指定区间内的成员，通过索引，分数从低到高  
+  参数:${key}为redis的键 ${min}为最低的分数 ${max}为最高的分数 ${withscore}表示是否需要显示分数，可不写 
+  ```shell
+  127.0.0.1:6379> zrevrangebyscore database 3 1
+  1) "access"
+  2) "sqlserver"
+  3) "mysql"
+  4) "oracle"
+  ``` 
+
+7.命令:zrem ${key} ${member1} [${member2} ...]      
+  描述:移除有序集合中的一个或多个成员  
+  参数:${key}为redis的键 ${member}为需要查看索引的成员,可以为多个 
+  ```shell
+  127.0.0.1:6379> zrem database redis access
+  (integer) 2
+  ``` 
+
+8.命令:zremrangebylex ${key} ${min} ${max}      
+  描述:移除有序集合中给定的字典区间的所有成员  
+  参数:${key}为redis的键 ${min}为最低的分值 ${max}为最高的分值 
 
 
