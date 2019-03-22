@@ -265,7 +265,7 @@ redis-cli -h ${host} -p ${port} -a ${password}
     4) "21"
   ``` 
 
-### 2.5 列表类型(LIST)
+### 2.5 列表类型(List)
 
 &emsp;列表是简单的字符串列表，按照插入顺序排序，常用的redis命令如下所示:
 
@@ -316,7 +316,7 @@ redis-cli -h ${host} -p ${port} -a ${password}
   2) "tennis"
   ``` 
   
-5.命令:rpop ${key}   
+6.命令:rpop ${key}   
   描述:移除列表的最后一个元素  
   参数:${key}为redis的键  
   ```shell
@@ -325,6 +325,73 @@ redis-cli -h ${host} -p ${port} -a ${password}
   127.0.0.1:6379> lrange sports 0 10
   1) "football"
   ```
- 
   
+### 2.6 集合类型(Set)
+
+&emsp;Set是有String类型组成的集合，在集合中，所有成员都是唯一的，常用的redis命令如下所示:  
   
+1.命令:SADD ${key} ${value1} [${value2} ...]  
+  描述:向集合中添加一个或多个成员  
+  参数:${key}为redis的键 ${value1}为需要添加的集合成员  
+  ```shell
+  127.0.0.1:6379> sadd language english
+  (integer) 1
+  127.0.0.1:6379> sadd language french
+  (integer) 1
+  # 当插入的值与集合中的数据重复时，则会显示0
+  127.0.0.1:6379> sadd language english
+  (integer) 0
+  ```
+  
+2.命令:scard ${key}  
+  描述:显示集合的总数  
+  参数:${key}为redis的键  
+  ```shell
+  127.0.0.1:6379> scard language
+  (integer) 2
+  ```
+
+3.命令:smembers ${key}  
+  描述:显示集合中的所有成员  
+  参数:${key}为redis的键  
+  ```shell
+  127.0.0.1:6379> smembers language
+  1) "english"
+  2) "french"
+  ```
+
+4.命令:spop ${key}  
+  描述:移除集合中的一个随机成员，并返回移除成员  
+  参数:${key}为redis的键  
+  ```shell
+  127.0.0.1:6379> spop language
+  "french"
+  ```
+
+5.命令:srandmember ${key} ${count}  
+  描述:返回一至多个集合成员  
+  参数:${key}为redis的键  ${count}需要返回的成员数量，默认为1  
+  ```shell
+  127.0.0.1:6379> srandmember language
+  "english"
+  ```
+
+6.命令:srem ${key} [${value1} ...]  
+  描述:移除一至多个集合成员  
+  参数:${key}为redis的键  ${value1}为需要移除的集合成员，可以为多个  
+  ```shell
+  127.0.0.1:6379> srem language english
+  (integer) 1
+  ```
+
+7.命令:sunion ${key1} [${key2} ...]   
+  描述:返回指定集合中的并集  
+  参数:${key1}为redis的键，可以为多个     
+
+8.命令:sinter ${key1} [${key2} ...]   
+  描述:返回指定集合中的交集  
+  参数:${key1}为redis的键，可以为多个 
+
+
+
+
