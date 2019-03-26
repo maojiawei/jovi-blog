@@ -128,6 +128,17 @@ redis-cli -h ${host} -p ${port} -a ${password}
 (integer) 1
 ``` 
 
+6.命令:select ${db}  
+描述:跳转某一数据库  
+参数:${db}为redis的db库
+
+7.命令:flushdb  
+描述:清楚单一数据库(慎用)  
+
+8.命令:flushall  
+描述:清楚所有数据库(慎用)  
+ 
+
 ### 2.3 字符串类型(String)
 
 &emsp;字符串类型包括字符串、浮点型和整型。常用的redis命令如下所示:
