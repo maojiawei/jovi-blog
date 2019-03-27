@@ -16,6 +16,11 @@ pipeline {
                 sh 'tar -czvf public.tar.gz public'
             }
         }
+        stage('Rm') {
+            steps {
+                sh 'rm /root/.jenkins/workspace/target/public.tar.gz'
+            }
+        }
         stage('Mkdir') {
             steps {
                 sh 'mkdir -p /root/.jenkins/workspace/target'
