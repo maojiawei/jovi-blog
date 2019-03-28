@@ -13,12 +13,12 @@ pipeline {
         }
         stage('Rm') {
             steps {
-                sh 'rm -rf /root/nginx/html/public'
+                sh 'rm -rf /root/.jenkins/workspace/target/public'
             }
         }
         stage('Copy') {
             steps {
-                sh 'cp -r /root/.jenkins/workspace/jovi-blog/public /root/nginx/html/'
+                sh 'cp -r /root/.jenkins/workspace/jovi-blog/public /root/.jenkins/workspace/target/'
             }
         }
     }
