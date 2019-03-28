@@ -21,5 +21,10 @@ pipeline {
                 sh 'cp -r /root/.jenkins/workspace/jovi-blog/public /root/.jenkins/workspace/target/'
             }
         }
+        stage('Chmod') {
+            steps {
+                sh 'chmod 775 /root/.jenkins/workspace/target/public'
+            }
+        }
     }
 }
