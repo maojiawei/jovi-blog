@@ -11,7 +11,7 @@ pipeline {
                 sh 'hugo' 
             }
         }
-        stage('Copy') {
+        stage('Rm') {
             steps {
                 sh 'rm -rf /root/nginx/html/public'
             }
