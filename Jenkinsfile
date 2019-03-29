@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Chmod') {
             steps {
-                sh 'chmod 775 /root/.jenkins/workspace/target/public'
+                sh 'chmod -R 775 /root/.jenkins/workspace/target/public'
             }
         }
     }
