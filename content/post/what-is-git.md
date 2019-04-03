@@ -103,5 +103,7 @@ toc: false
 &emsp;其中最著名的是LightGBM。这是一种快速、分布式、高性能的梯度增强框架。它主要基于决策树算法，可以用于排名，归类以及其他机器学习场景。
 &emsp;因此，Git担任了一个重要的任务在LightGBM的开发过程中。
 
+&emsp;这篇文章翻译自:https://www.edureka.co/blog/what-is-git/
+
 
 
