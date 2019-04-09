@@ -98,7 +98,7 @@ aof-load-truncated yes
 # 文件重写策略
 aof-rewrite-incremental-fsync yes
 ```
-**注意:**  s
+**注意:**  
 - `appendfsync`有三种模式:  
 1.always：把每个写命令都立即同步到aof，很慢，但是很安全   
 2.everysec：每秒同步一次，是折中方案    
