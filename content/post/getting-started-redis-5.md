@@ -12,11 +12,22 @@ toc: true
 # 操作实战
 &emsp;我们先创建一个消息订阅者(subscriber)。首先创建一个频道(channel)，在对这个频道进行订阅。
 ```editorconfig
-
+127.0.0.1:6379> subscribe jovi
+Reading messages... (press Ctrl-C to quit)
+1) "subscribe"
+2) "jovi"
+3) (integer) 1
 ```
 &emsp;我们再启动一个新的客户端，然后向刚刚创建的频道发送消息，在订阅者的客户端即可收到消息。
 ```editorconfig
-
+127.0.0.1:6379> publish jovi aaa
+(integer) 1
+```
+&emsp;订阅端收到结果如下
+```jshelllanguage
+n1) "message"
+2) "jovi"
+3) "aaa
 ```
 
 # 工作原理
