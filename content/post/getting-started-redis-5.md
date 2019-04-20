@@ -1,7 +1,7 @@
 ---
 title: "redis入门实战之五:消息队列"
 date: 2019-04-20T12:48:10+08:00
-draft: true
+draft: false
 tags: ["redis"]
 categories: "microservice"
 toc: true
