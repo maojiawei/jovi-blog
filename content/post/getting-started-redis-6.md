@@ -1,7 +1,7 @@
 ---
 title: "redis入门实战之六:工作流(pipeline)"
 date: 2019-04-22T20:22:42+08:00
-draft: true
+draft: false
 tags: ["redis"]
 categories: "microservice"
 toc: true
