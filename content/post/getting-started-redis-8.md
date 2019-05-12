@@ -76,6 +76,17 @@ QUEUED
 1) "1557662691852-0"
 2) "1557662691852-1"
 ```
+&emsp;当一个stream数量超过100万，会删除多余的旧消息。也可以通过MAXLEN修改上限。
+```editorconfig
+127.0.0.1:6379> xadd maxlenstream maxlen 1 * name jovi
+"1557669729966-0"
+127.0.0.1:6379> xadd maxlenstream maxlen 1 * name fran
+"1557669737465-0"
+127.0.0.1:6379> xrange maxlenstream - +
+1) 1) "1557669737465-0"
+   2) 1) "name"
+      2) "fran"
+```
 ### 2.2 XRANGE
 
 &emsp;查询从大到小的数据，-是最小，+是最大。
