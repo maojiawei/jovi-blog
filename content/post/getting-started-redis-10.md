@@ -4,7 +4,7 @@ date: 2019-08-12T22:09:48+08:00
 draft: false
 tags: ["redis"]
 categories: "microservice"
-toc: false
+toc: true
 ---
 &emsp;redis的过期时间共有三种策略:
 ### 定时删除
