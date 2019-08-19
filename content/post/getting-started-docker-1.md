@@ -16,6 +16,9 @@ toc: true
 #### Docker
 &emsp;Docker容器技术是基于操作系统的虚拟化技术，所有的容器与宿主机公用一个系统内核。相比虚拟机，容器引擎提供的是进程级别的隔离。  
 
-&emsp;基础层
+&emsp;以下是Docker与虚拟机在架构方面的差别，左边为虚拟机，右边为docker容器：
+
 ![Docker与虚拟机](../images/docker/docker与虚拟机.png)
-&emsp;
+&emsp;虚拟机和容器都是在硬件和操作系统之上的，容器与虚拟机的差别就在于虚拟机的Hypervisor、Guest OS 与Docker容器的Docker Engine。
+
+&emsp;在虚拟机中，Hypervisor是核心所在，它为虚拟机提供了虚拟化的运行平台，所有对虚拟机的操作都需要通过它来运行。
