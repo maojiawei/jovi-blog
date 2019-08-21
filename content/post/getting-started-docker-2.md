@@ -6,7 +6,7 @@ tags: ["docker"]
 categories: "container"
 toc: true
 ---
-本文主要介绍如何在linux环境下安装Docker。
+&emsp;本文主要介绍如何在linux环境下安装Docker。
 ### 1.0 在线yum安装
 
 #### 1.1 内核版本

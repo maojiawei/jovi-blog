@@ -6,7 +6,7 @@ tags: ["docker"]
 categories: "container"
 toc: true
 ---
-本篇文章作为docker入门实战的第一课，将会为大家介绍关于docker的基本概念。  
+&emsp;本篇文章作为docker入门实战的第一课，将会为大家介绍关于docker的基本概念。  
 ### 1.0 介绍
 &emsp;Docker是以Docker容器为资源分割和调度的基本单位，封装整个软件运行时环境，为开发者和系统管理员设计的，用于构建、发布和运行分布式应用的平台。它是一个跨平台、可移植并且简单易用的容器解决方案。Docker可移在容器内部快速自动化地部署应用，并通过操作系统内核技术（namespace、cgroups等）为容器提供资源隔离与安全保障。
 
