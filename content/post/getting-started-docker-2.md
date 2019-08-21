@@ -18,20 +18,20 @@ toc: true
 
 #### 1.2 yum安装
 &emsp;运行如下命令，即可安装完成。
-```aidl
+```shell
 yum install -y docker
 ```
 
 #### 1.3 docker启动
 &emsp;将docker启动，并加入开机自启动
-```aidl
+```shell
 systemctl enable docker
 systemctl start docker
 ```
 
 #### 1.4 验证
 &emsp;验证docker是否正常，通过以下命令验证即可。
-```aidl
+```shell
 [root@iZwr8ljas8f52iZ ~]# docker version
 Client:
  Version:         1.13.1
@@ -51,6 +51,5 @@ Server:
  Built:           Tue Mar 12 10:27:24 2019
  OS/Arch:         linux/amd64
  Experimental:    false
-
 ```
 
