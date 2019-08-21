@@ -29,7 +29,7 @@ systemctl enable docker
 systemctl start docker
 ```
 
-#### 1.4验证
+#### 1.4 验证
 &emsp;验证docker是否正常，通过以下命令验证即可。
 ```aidl
 [root@iZwr8ljas8f52iZ ~]# docker version
