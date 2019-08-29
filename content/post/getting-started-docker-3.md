@@ -6,7 +6,9 @@ tags: ["docker"]
 categories: "container"
 toc: true
 ---
-&emsp;本文主要介绍如何用命令操作Docker镜像。Docker镜像一般格式为：
+&emsp;本文主要介绍如何用命令操作Docker镜像。如前文所述，Docker会将应用程序打包成镜像，镜像就是生成容器的模板。
+
+&emsp;Docker镜像一般格式为：
 `[仓库]/[镜像]:[标签]`
 
 - `仓库` :该Docker镜像所在的仓库地址。一般默认为docker.io，也可以为私有仓库，例如:127.0.0.1:9000。
@@ -24,7 +26,7 @@ toc: true
 - `AUTOMATED` :是否为automated build类型。
 
 ```shell
-docker search busybox
+[root@iZwr8ljas8f52iZ ~]# docker search busybox
 INDEX       NAME                                DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
 docker.io   docker.io/busybox                   Busybox base image.                             1667      [OK]
 docker.io   docker.io/progrium/busybox                                                          70                   [OK]
@@ -77,7 +79,7 @@ docker.io/mysql           5.7                 7faa3c53e6d6        3 months ago  
 &emsp;`docker inspect [镜像名 or 镜像ID]`,即可查看镜像详细细节。
 
 ```shell
-docker inspect busybox
+[root@iZwr8ljas8f52iZ ~]# docker inspect busybox
 [
     {
         "Id": "sha256:db8ee88ad75f6bdc74663f4992a185e2722fa29573abcc1a19186cc5ec09dceb",
@@ -103,7 +105,7 @@ docker inspect busybox
 &esmp;`docker save [镜像名] > [镜像压缩文件名]`即可将镜像压缩。如下例所示，在当前目录下即生成对应对应镜像压缩文件。
 
 ```shell
-docker save busybox > busybox.tar.gz
+[root@iZwr8ljas8f52iZ ~]# docker save busybox > busybox.tar.gz
 ```
 
 ### 6.0 镜像导入
@@ -113,5 +115,17 @@ docker save busybox > busybox.tar.gz
 &esmp;`docker load < [镜像压缩文件名]`即可。
 
 ```shell
-docker load < busybox.tar.gz
+[root@iZwr8ljas8f52iZ ~]# docker load < busybox.tar.gz
+```
+
+### 7.0 删除镜像
+
+&emsp;`docker rmi [镜像名 or 镜像ID]`,即可在本地删除镜像。
+
+```shell
+[root@iZwr8ljas8f52iZ ~]# docker rmi busybox
+Untagged: busybox:latest
+Untagged: docker.io/busybox@sha256:9f1003c480699be56815db0f8146ad2e22efea85129b5b5983d0e0fb52d9ab70
+Deleted: sha256:db8ee88ad75f6bdc74663f4992a185e2722fa29573abcc1a19186cc5ec09dceb
+Deleted: sha256:0d315111b4847e8cd50514ca19657d1e8d827f4e128d172ce8b2f76a04f3faea
 ```
