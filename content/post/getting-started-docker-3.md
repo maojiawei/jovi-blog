@@ -96,3 +96,22 @@ docker inspect busybox
 ]
 ```
 
+### 5.0 打包镜像
+
+&emsp;如果需要将本地的镜像移动至其他服务器，可以通过将镜像进行打包，在传至对应服务器，导入即可。
+
+&esmp;`docker save [镜像名] > [镜像压缩文件名]`即可将镜像压缩。如下例所示，在当前目录下即生成对应对应镜像压缩文件。
+
+```shell
+docker save busybox > busybox.tar.gz
+```
+
+### 6.0 镜像导入
+
+&emsp;在`5.0`的基础上，可以将压缩后的镜像文件，在其他含有docker的服务器中进行镜像导入。
+
+&esmp;`docker load < [镜像压缩文件名]`即可。
+
+```shell
+docker load < busybox.tar.gz
+```
