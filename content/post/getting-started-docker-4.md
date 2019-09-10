@@ -19,7 +19,7 @@ toc: true
 - `PORTS`：容器端口。
 - `NAMES`：容器名称。
 
-```aidl
+```shell
 docker ps -a
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                 PORTS                               NAMES
 aa66e1625cd0        minio/minio         "/usr/bin/docker-e..."   2 weeks ago         Up 2 weeks (healthy)   0.0.0.0:9000->9000/tcp              minio
