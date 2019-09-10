@@ -1,7 +1,7 @@
 ---
 title: "docker入门实战之六:Dockerfile"
 date: 2019-09-09T11:13:08+08:00
-draft: true
+draft: false
 tags: ["docker"]
 categories: "container"
 toc: true
@@ -23,7 +23,7 @@ docker build [OPTIONS] PATH | URL | -
 ### 2.0 Dockerfile指令详解
 
 #### 2.1 FROM指令
-&emsp;FROM指令用于声明该Dockerfile的基础镜像，即该镜像是基于哪个镜像来构建新的镜像。
+&emsp;FROM指令用于声明该Dockerfile的基础镜像，即该镜像是基于哪个镜像来构建新的镜像，一般为Dockerfile的首行。
 ```shell
 FROM <image>:<tag>
 ```
@@ -110,6 +110,25 @@ EXPOSE <端口> [<端口>...]
 
 - `<端口> :`端口号，可以为多个
 
+#### 2.8 CMD指令
+&emsp;容器运行时执行的命令，一般为Dockerfile的最后一行
+```shell
+CMD <命令>
+```
+&emsp;参数说明:
+
+- `<命令> :`需要执行的shell命令
+**注:**与`RUN`命令不同的是，`RUN`是在构建时需要执行的命令，而`CMD`是在容器启动是调用的命令。
+
+#### 2.9 ENTRYPOINT指令
+&emsp;容器运行时执行的命令，一般为Dockerfile的最后一行
+```shell
+ENTRYPOINT <命令>
+```
+&emsp;参数说明:
+
+- `<命令> :`需要执行的shell命令
+**注:**与CMD不同的是，当指定了ENTRYPOINT后，CMD不再是直接运行命令，而是将CMD的内容作为参数传给ENTRYPOINT指令。
 
 
 
