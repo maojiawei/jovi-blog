@@ -6,5 +6,5 @@ tags: ["docker"]
 categories: "container"
 toc: true
 ---
-&emsp; Linux Namespace是
+&emsp; Linux Namespace是Docker容器隔离的基础。
 
