@@ -1,10 +1,10 @@
 ---
 title: "JWT简介"
 date: 2019-09-25T13:44:27+08:00
-draft: true
+draft: false
 tags: ["JWT","OAUTH"]
 categories: "microservice"
-toc: false
+toc: true
 ---
 &emsp;JWT(JSON Web Token)是一种互联网开放标准(RFC7519)的访问令牌，主要基于JSON格式。这种TOKEN特色在于紧凑(compact)、URL安全(URL-safe)，它主要用于Web浏览器单点登录（SSO）。
 
@@ -94,8 +94,16 @@ HMAC-SHA256(
 &emsp;结果为gzSraSYS8EXBxLN_oWnFSRgCzcmJmMjLiuyu5CSpyHI 。
 
 ### 3.0 JWT认证模式
+&emsp;以下为JWT认证流程:
+![JWT认证流程](../images/jwt/JWT流程.jpg)
 
 ### 4.0 JWT问题
+
+&emsp;1.TOKEN怎么失效?  
+&emsp;对于无状态的JWT令牌，不能通过服务器端让令牌失效，只能等待令牌达到过期时间才会失效。因此，不建议时效设置过长。
+
+&emsp;2.JWT的安全性?  
+&emsp;Base64加密是可逆的，所以一般不建议在JWT内存放敏感信息。
 
 ### 5.0 参考资料
 
