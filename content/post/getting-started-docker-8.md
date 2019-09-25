@@ -1,7 +1,7 @@
 ---
 title: "docker入门实战之八:Namespace"
 date: 2019-09-24T17:53:25+08:00
-draft: true
+draft: false
 tags: ["docker"]
 categories: "container"
 toc: true
@@ -27,7 +27,7 @@ toc: true
 
 ### 3.0 IPC NameSpace
 
-&emsp;进程间通信（Inter-Process Communication，IPC）涉及到的IPC资源包括常见的信号量、消息队列和共享内存。然而与虚拟机不同的是，容器内部进程间通信对宿主机来说，实际上是具有相同PID namespace中的进程间通信，因此需要一个唯一的标识符来进行区别。申请IPC资源就是申请了一个全局唯一的32位ID，所以IPC namespace中实际上包含了系统IPC标识符以及实现POSIX消息队列的文件系统。在同一个IPC namespace下的进程彼此可见，不同IPC namespace下的进程则互相不可见。
+&emsp;进程间通信（Inter-Process Communication，IPC）涉及到的IPC资源，包括常见的信号量、消息队列和共享内存。然而与虚拟机不同的是，容器内部进程间通信对宿主机来说，实际上是具有相同PID namespace中的进程间通信，因此需要一个唯一的标识符来进行区别。申请IPC资源就是申请了一个全局唯一的32位ID，所以IPC namespace中实际上包含了系统IPC标识符以及实现POSIX消息队列的文件系统。在同一个IPC namespace下的进程彼此可见，不同IPC namespace下的进程则互相不可见。
 
 ### 4.0 PID NameSpace
 
