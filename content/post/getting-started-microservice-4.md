@@ -30,7 +30,7 @@ toc: true
 
 &emsp;HTTP协议建立通信的机制一般都是采用[三次握手]( https://condor.depaul.edu/jkristof/technotes/tcp.html )和四次挥手的方式进行的。
 
-#### 2.2 socket
+#### 2.2 SOCKET
 
 &emsp;Socket通信是基于TCP/IP协议的封装，建立一次Socket连接至少需要一堆套接字。第一个运行于客户端，称为clientSocket；另一种运行于服务端，称为serverSocket。Socket通信需要经过以下四个步骤:
 
