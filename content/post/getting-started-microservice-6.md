@@ -1,5 +1,5 @@
 ---
-title: "微服务架构系列：服务的限流与熔断"
+title: "微服务架构系列之六：服务的限流与熔断"
 date: 2019-12-11T16:58:16+08:00
 draft: false
 categories: "microservice"

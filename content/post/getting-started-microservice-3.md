@@ -1,5 +1,5 @@
 ---
-title: "微服务架构系列：注册中心"
+title: "微服务架构系列之三：注册中心"
 date: 2019-11-21T22:07:42+08:00
 draft: false
 categories: "microservice"

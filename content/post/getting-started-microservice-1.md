@@ -1,5 +1,5 @@
 ---
-title: "微服务架构系列：微服务基础"
+title: "微服务架构系列之一：微服务基础"
 date: 2019-10-25T16:01:46+08:00
 draft: false
 categories: "microservice"
